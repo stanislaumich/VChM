@@ -14,6 +14,15 @@ About to export VCM's objects ...
 . exporting sequence numbers
 . exporting cluster definitions
 . about to export VCM's tables via Conventional Path ...
+. . exporting table                           BLOG
+                                                            0 rows exported
+EXP-00091: Exporting questionable statistics.
+. . exporting table                            USR
+                                                            0 rows exported
+EXP-00091: Exporting questionable statistics.
+. . exporting table                           WLOG
+                                                            0 rows exported
+EXP-00091: Exporting questionable statistics.
 . exporting synonyms
 . exporting views
 . exporting stored procedures
@@ -30,4 +39,4 @@ About to export VCM's objects ...
 . exporting dimensions
 . exporting post-schema procedural objects and actions
 . exporting statistics
-Export terminated successfully without warnings.
+Export terminated successfully with warnings.
