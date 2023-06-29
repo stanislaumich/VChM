@@ -1,0 +1,42 @@
+Database closed.
+Database dismounted.
+ORACLE instance shut down.
+ORACLE instance started.
+
+Total System Global Area 1071333376 bytes                                       
+Fixed Size                  1388352 bytes                                       
+Variable Size             721420480 bytes                                       
+Database Buffers          343932928 bytes                                       
+Redo Buffers                4591616 bytes                                       
+Database mounted.
+Database opened.
+
+Database altered.
+
+Database closed.
+Database dismounted.
+ORACLE instance shut down.
+ORACLE instance started.
+
+Total System Global Area 1071333376 bytes                                       
+Fixed Size                  1388352 bytes                                       
+Variable Size             721420480 bytes                                       
+Database Buffers          343932928 bytes                                       
+Redo Buffers                4591616 bytes                                       
+Database mounted.
+Database opened.
+drop user vcm cascade
+          *
+ERROR at line 1:
+ORA-01918: user 'VCM' does not exist 
+
+
+
+User created.
+
+
+Grant succeeded.
+
+
+Grant succeeded.
+

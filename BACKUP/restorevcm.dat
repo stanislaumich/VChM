@@ -1,0 +1,8 @@
+FILE="backupvcm.DMP"
+LOG="impbackupvcm.log"
+FROMUSER=vcm
+TOUSER=vcm
+GRANTS=Y
+CONSTRAINTS=Y
+IGNORE=Y
+FEEDBACK=1000
