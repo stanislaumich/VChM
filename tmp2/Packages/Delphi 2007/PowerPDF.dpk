@@ -1,0 +1,47 @@
+package PowerPDF;
+
+{$R *.res}
+{$R '..\..\PowerPdf.dcr'}
+{$ALIGN 8}
+{$ASSERTIONS OFF}
+{$BOOLEVAL OFF}
+{$DEBUGINFO OFF}
+{$EXTENDEDSYNTAX ON}
+{$IMPORTEDDATA ON}
+{$IOCHECKS OFF}
+{$LOCALSYMBOLS OFF}
+{$LONGSTRINGS ON}
+{$OPENSTRINGS ON}
+{$OPTIMIZATION ON}
+{$OVERFLOWCHECKS OFF}
+{$RANGECHECKS OFF}
+{$REFERENCEINFO OFF}
+{$SAFEDIVIDE OFF}
+{$STACKFRAMES OFF}
+{$TYPEDADDRESS OFF}
+{$VARSTRINGCHECKS ON}
+{$WRITEABLECONST OFF}
+{$MINENUMSIZE 1}
+{$IMAGEBASE $400000}
+{$DESCRIPTION 'PowerPDF 11 Run-time package'}
+{$LIBSUFFIX '11'}
+{$RUNONLY}
+{$IMPLICITBUILD OFF}
+
+requires
+  rtl,
+  vcl,
+  vclimg,
+  vcljpg;
+
+contains
+  PdfJpegImage in '..\..\PdfJpegImage.pas',
+  PdfTypes in '..\..\PdfTypes.pas',
+  PRAnnotation in '..\..\PRAnnotation.pas',
+  PReport in '..\..\PReport.pas',
+  PRJpegImage in '..\..\PRJpegImage.pas',
+  PdfDoc in '..\..\PdfDoc.pas',
+  PdfFonts in '..\..\PdfFonts.pas',
+  PdfImages in '..\..\PdfImages.pas';
+
+end.

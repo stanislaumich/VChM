@@ -1,0 +1,76 @@
+unit TNPDFEX;
+
+interface
+
+uses
+  SysUtils, WinTypes, WinProcs, Messages, Classes, Graphics, Controls,
+  Forms, Dialogs, StdCtrls, ExtCtrls, Vcl.Imaging.pngimage;
+
+type
+  TForm1 = class(TForm)
+    Button1: TButton;
+    Image1: TImage;
+    Memo1: TMemo;
+    Label1: TLabel;
+    SaveDialog1: TSaveDialog;
+    procedure Button1Click(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+
+var
+  Form1: TForm1;
+
+implementation
+
+{$R *.DFM}
+
+uses tnpdf;
+
+procedure TForm1.Button1Click(Sender: TObject);
+var i:Integer; PDF:TPrintPDF;
+begin
+
+if SaveDialog1.Execute then
+begin
+
+{Create TPrintPDF VCL}
+PDF:=TPrintPDF.Create(self);
+
+{Set Doc Info}
+PDF.TITLE := Label1.Caption;
+
+{Use Compression: VCL Must compile with ZLIB comes with D3 above}
+PDF.Compress:=true;
+
+{Set Page Size}
+//PDF.PageWidth:= 612;
+//PDF.PageHeight:= 792;
+
+
+{Set Filename to save}
+PDF.FileName := SaveDialog1.Filename;
+
+{Start Printing...}
+PDF.BeginDoc;
+
+
+
+{Print Image}
+PDF.Draw(15,15,Image1);
+
+
+{End Printing}
+PDF.EndDoc;
+
+{FREE TPrintPDF VCL}
+PDF.Free;
+end;
+
+
+end;
+
+end.

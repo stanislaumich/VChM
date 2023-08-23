@@ -1,0 +1,60 @@
+﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+    <PropertyGroup>
+        <ProjectGuid>{D3BF085F-2C4E-4AF9-BAAF-B88BFD78F10C}</ProjectGuid>
+    </PropertyGroup>
+    <ItemGroup>
+        <Projects Include="PowerPDF.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="PowerPDFD.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="S:\_programming\pp.dproj">
+            <Dependencies/>
+        </Projects>
+    </ItemGroup>
+    <ProjectExtensions>
+        <Borland.Personality>Default.Personality.12</Borland.Personality>
+        <Borland.ProjectType/>
+        <BorlandProject>
+            <Default.Personality/>
+        </BorlandProject>
+    </ProjectExtensions>
+    <Target Name="PowerPDF">
+        <MSBuild Projects="PowerPDF.dproj"/>
+    </Target>
+    <Target Name="PowerPDF:Clean">
+        <MSBuild Projects="PowerPDF.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="PowerPDF:Make">
+        <MSBuild Projects="PowerPDF.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="PowerPDFD">
+        <MSBuild Projects="PowerPDFD.dproj"/>
+    </Target>
+    <Target Name="PowerPDFD:Clean">
+        <MSBuild Projects="PowerPDFD.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="PowerPDFD:Make">
+        <MSBuild Projects="PowerPDFD.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="pp">
+        <MSBuild Projects="S:\_programming\pp.dproj"/>
+    </Target>
+    <Target Name="pp:Clean">
+        <MSBuild Projects="S:\_programming\pp.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="pp:Make">
+        <MSBuild Projects="S:\_programming\pp.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="Build">
+        <CallTarget Targets="PowerPDF;PowerPDFD;pp"/>
+    </Target>
+    <Target Name="Clean">
+        <CallTarget Targets="PowerPDF:Clean;PowerPDFD:Clean;pp:Clean"/>
+    </Target>
+    <Target Name="Make">
+        <CallTarget Targets="PowerPDF:Make;PowerPDFD:Make;pp:Make"/>
+    </Target>
+    <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
+</Project>
