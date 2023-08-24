@@ -201,6 +201,7 @@ object Form1: TForm1
     Height = 300
     Lines.Strings = (
       'Memo1')
+    ScrollBars = ssBoth
     TabOrder = 3
   end
   object BitBtn3: TBitBtn

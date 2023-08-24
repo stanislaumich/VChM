@@ -3,7 +3,8 @@ unit USett;
 interface
 
 uses
-  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants,
+  System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Vcl.Buttons;
 
 type
@@ -30,20 +31,21 @@ var
 implementation
 
 {$R *.dfm}
+
 uses umain;
+
 procedure TFSett.BitBtn1Click(Sender: TObject);
 begin
 
-
- FSett.Close;
+  FSett.Close;
 end;
 
 procedure TFSett.FormClose(Sender: TObject; var Action: TCloseAction);
 begin
- umain.uselogin:=CheckBox1.Checked;
- umain.infolder  := Edit1.Text;
- umain.arcfolder := Edit2.Text;
- umain.scaner    := Edit3.Text;
+  umain.uselogin := CheckBox1.Checked;
+  umain.infolder := Edit1.Text;
+  umain.arcfolder := Edit2.Text;
+  umain.scaner := Edit3.Text;
 
 end;
 

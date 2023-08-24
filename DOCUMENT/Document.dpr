@@ -2,9 +2,9 @@ program Document;
 
 uses
   Vcl.Forms,
-  UMAIN in 'UMAIN.pas' {Form1},
-  USett in 'USett.pas' {FSett},
-  UArc in 'UArc.pas' {FArc},
+  UMAIN in 'UMAIN.pas' {Form1} ,
+  USett in 'USett.pas' {FSett} ,
+  UArc in 'UArc.pas' {FArc} ,
   Ustr in 'Ustr.pas';
 
 {$R *.res}
@@ -16,4 +16,5 @@ begin
   Application.CreateForm(TFSett, FSett);
   Application.CreateForm(TFArc, FArc);
   Application.Run;
+
 end.

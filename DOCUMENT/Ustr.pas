@@ -9,9 +9,9 @@ uses
 
 // ==============================================================================
 const
-  cpWin  = 01;
-  cpAlt  = 02;
-  cpKoi  = 03;
+  cpWin = 01;
+  cpAlt = 02;
+  cpKoi = 03;
   AltSet = ['А' .. 'Я', 'а' .. 'п', 'р' .. 'я'];
   KoiSet = ['Б' .. 'Р', 'Т' .. 'С'];
   WinSet = ['а' .. 'п', 'р' .. #255];
@@ -28,7 +28,7 @@ type
 
 var
   MaskString: string;
-  dates     : array [1 .. 12] of integer = (
+  dates: array [1 .. 12] of integer = (
     31,
     28,
     31,
@@ -360,8 +360,8 @@ begin
   tgd := TOpenDialog.Create(Memo1);
   if ext <> '' then
     tgd.Filter := ext;
-  tgd.Options  := [ofHideReadOnly, ofAllowMultiSelect, ofEnableSizing];
-  res          := tgd.execute;
+  tgd.Options := [ofHideReadOnly, ofAllowMultiSelect, ofEnableSizing];
+  res := tgd.execute;
   if res then
   begin
     Memo1.Lines := tgd.Files;
@@ -393,11 +393,11 @@ function validatedate(s: string): boolean;
 var
   day, month, year: integer;
 begin
-  result   := true;
+  result := true;
   dates[2] := 28;
-  day      := strtoint(pnext('.', s));
-  month    := strtoint(pnext('.', s));
-  year     := strtoint(s);
+  day := strtoint(pnext('.', s));
+  month := strtoint(pnext('.', s));
+  year := strtoint(s);
   if (day < 1) or (month < 1) or (year < 1) then
   begin
     result := false;
@@ -442,11 +442,11 @@ end;
 
 function parseflat(fin: string; var f_num: string; var f_let: string): boolean;
 var
-  i  : integer;
-  s  : string;
+  i: integer;
+  s: string;
   res: boolean;
   cod: integer;
-  c  : char;
+  c: char;
 begin
   parseflat := false;
   //
@@ -459,15 +459,15 @@ begin
   begin
     f_num := copy(fin, 1, cod - 1);
     f_let := copy(fin, cod, 10);
-    c     := f_let[1];
+    c := f_let[1];
     f_let := inttostr(ord(c) - ord('А') + 1);
-    res   := true;
+    res := true;
   end
   else
   begin
     f_num := fin;
     f_let := '0';
-    res   := false;
+    res := false;
   end;
   parseflat := res;
 end;
@@ -476,33 +476,33 @@ function parsehome(hin: string; var h_num, h_let, h_drob,
   h_korp: string): boolean;
 var
   s, ss, sss, ssss: string;
-  cod, i          : integer;
+  cod, i: integer;
 begin
   val(hin, i, cod);
   if cod = 0 then
   begin
-    h_num     := hin;
-    h_let     := '0';
-    h_korp    := '0';
-    h_drob    := '0';
+    h_num := hin;
+    h_let := '0';
+    h_korp := '0';
+    h_drob := '0';
     parsehome := false;
   end
   else
   begin // тут мы если буква или дробь
     if pos('/', hin) <> 0 then // есть дробь
     begin
-      s  := copy(hin, 1, pos('/', hin) - 1);
+      s := copy(hin, 1, pos('/', hin) - 1);
       ss := copy(hin, pos('/', hin) + 1, 10);
       parseflat(s, h_num, h_let);
-      h_drob    := ss;
-      h_korp    := '0';
+      h_drob := ss;
+      h_korp := '0';
       parsehome := true;
     end
     else
     begin // может быть буква
       parseflat(hin, h_num, h_let);
-      h_drob    := '0';
-      h_korp    := '0';
+      h_drob := '0';
+      h_korp := '0';
       parsehome := true;
     end;
     parsehome := true;
@@ -513,7 +513,7 @@ Function Count_pos(s: string): integer;
 var
   i, j: integer;
 begin
-  j     := 0;
+  j := 0;
   for i := 1 to length(s) do
     if s[i] = '|' then
       inc(j);
@@ -522,19 +522,19 @@ end;
 
 Function OpenFolder(form1: tform): string;
 var
-  TitleName  : string;
-  lpItemID   : PItemIDList;
-  BrowseInfo : TBrowseInfo;
+  TitleName: string;
+  lpItemID: PItemIDList;
+  BrowseInfo: TBrowseInfo;
   DisplayName: array [0 .. MAX_PATH] of char;
-  TempPath   : array [0 .. MAX_PATH] of char;
+  TempPath: array [0 .. MAX_PATH] of char;
 begin
   FillChar(BrowseInfo, sizeof(TBrowseInfo), #0);
-  BrowseInfo.hwndOwner      := form1.handle;
+  BrowseInfo.hwndOwner := form1.handle;
   BrowseInfo.pszDisplayName := @DisplayName;
-  TitleName                 := 'Выберите папку резервной копии';
-  BrowseInfo.lpszTitle      := PChar(TitleName);
-  BrowseInfo.ulFlags        := BIF_RETURNONLYFSDIRS;
-  lpItemID                  := SHBrowseForFolder(BrowseInfo);
+  TitleName := 'Выберите папку резервной копии';
+  BrowseInfo.lpszTitle := PChar(TitleName);
+  BrowseInfo.ulFlags := BIF_RETURNONLYFSDIRS;
+  lpItemID := SHBrowseForFolder(BrowseInfo);
   if lpItemID <> nil then
   begin
     SHGetPathFromIDList(lpItemID, TempPath);
@@ -554,7 +554,7 @@ var
   ts, rs: string;
   // y,m,d:word;
   cod: integer;
-  p  : word;
+  p: word;
 begin
   invalid := false;
   // try
@@ -567,7 +567,7 @@ begin
   end;
   if (strtoint(ts) < 1) or (strtoint(ts) > 31) then
     invalid := true;
-  rs        := pnext('.', s);
+  rs := pnext('.', s);
   val(rs, p, cod);
   if cod <> 0 then
   begin
@@ -618,7 +618,7 @@ end;
 
 procedure Copyfilewin(handle: thandle; from, tof: string);
 var
-  OpStruc       : TSHFileOpStruct;
+  OpStruc: TSHFileOpStruct;
   frombuf, tobuf: array [0 .. 1024] of char;
 begin
   FillChar(frombuf, sizeof(frombuf), 0);
@@ -627,32 +627,32 @@ begin
   StrPCopy(tobuf, tof);
   with OpStruc do
   begin
-    Wnd                   := handle;
-    wFunc                 := FO_COPY;
-    pFrom                 := @frombuf;
-    pTo                   := @tobuf;
-    fFlags                := FOF_NOCONFIRMATION or FOF_RENAMEONCOLLISION;
+    Wnd := handle;
+    wFunc := FO_COPY;
+    pFrom := @frombuf;
+    pTo := @tobuf;
+    fFlags := FOF_NOCONFIRMATION or FOF_RENAMEONCOLLISION;
     fAnyOperationsAborted := false;
-    hNameMappings         := nil;
-    lpszProgressTitle     := nil;
+    hNameMappings := nil;
+    lpszProgressTitle := nil;
   end;
   ShFileOperation(OpStruc);
 end;
 
 function ExecAndWait(aCmd: string; WaitTimeOut: cardinal = INFINITE): cardinal;
 var
-  si : STARTUPINFO;
-  pi : PROCESS_INFORMATION;
+  si: STARTUPINFO;
+  pi: PROCESS_INFORMATION;
   res: BOOL;
-  r  : cardinal;
+  r: cardinal;
 begin
   with si do
   begin
-    cb          := sizeof(si);
-    lpReserved  := nil;
-    lpDesktop   := nil;
-    lpTitle     := PChar('External program "' + aCmd + '"');
-    dwFlags     := 0;
+    cb := sizeof(si);
+    lpReserved := nil;
+    lpDesktop := nil;
+    lpTitle := PChar('External program "' + aCmd + '"');
+    dwFlags := 0;
     cbReserved2 := 0;
     lpReserved2 := nil;
   end;
@@ -677,7 +677,7 @@ end;
 function strmonth(d: tdatetime; caps: boolean): string;
 var
   dm, m, y: word;
-  s       : string;
+  s: string;
 begin
   Decodedate(d, y, m, dm);
   if caps then
@@ -744,7 +744,7 @@ end;
 function strmonthd(d: tdatetime; caps: boolean): string;
 var
   dm, m, y: word;
-  s       : string;
+  s: string;
 begin
   Decodedate(d, y, m, dm);
   if caps then
@@ -812,9 +812,9 @@ function datetosqlite(s: string): string;
 var
   ts: string;
 begin
-  ts           := Mypos(s + '.', '.', 3) + '-';
-  ts           := ts + Mypos(s, '.', 2) + '-';
-  ts           := ts + Mypos(s, '.', 1);
+  ts := Mypos(s + '.', '.', 3) + '-';
+  ts := ts + Mypos(s, '.', 2) + '-';
+  ts := ts + Mypos(s, '.', 1);
   datetosqlite := ts;
 end;
 
@@ -831,14 +831,14 @@ end;
 // --------------------------------------------------------------------------------------------
 function CopyFile(FromPath, ToPath: string): integer;
 var
-  F1        : file;
-  F2        : file;
-  NumRead   : integer;
+  F1: file;
+  F2: file;
+  NumRead: integer;
   NumWritten: integer;
-  Buf       : pointer;
+  Buf: pointer;
   // BufSize: longint;
   Totalbytes: longint;
-  TotalRead : longint;
+  TotalRead: longint;
 begin
   result := 0;
   Assignfile(F1, FromPath);
@@ -866,22 +866,22 @@ end;
 
 function CopyFileProgress(FromPath, ToPath: string; p: tprogressbar): integer;
 var
-  F1        : file;
-  F2        : file;
-  NumRead   : integer;
+  F1: file;
+  F2: file;
+  NumRead: integer;
   NumWritten: integer;
-  Buf       : pointer;
+  Buf: pointer;
   // BufSize: longint;
   Totalbytes: longint;
-  TotalRead : longint;
+  TotalRead: longint;
 begin
   result := 0;
   Assignfile(F1, FromPath);
   Assignfile(F2, ToPath);
   Reset(F1, 1);
   Totalbytes := Filesize(F1);
-  p.Min      := 0;
-  p.Max      := Filesize(F1);
+  p.Min := 0;
+  p.Max := Filesize(F1);
   p.Position := 0;
   Rewrite(F2, 1);
   // BufSize := 16384;
@@ -912,10 +912,10 @@ begin
     Repaint;
     Parent := s;
     // Position := 100;
-    Top    := 2;
-    Left   := 0;
+    Top := 2;
+    Left := 0;
     Height := s.Height - Top;
-    Width  := s.Panels[0].Width - Left;
+    Width := s.Panels[0].Width - Left;
   end;
 
 end;
@@ -932,8 +932,8 @@ end;
 Function FileMove(fs1, fs2: string; del: integer): integer;
 var
   F1, F2: textfile;
-  s     : string;
-  res   : integer;
+  s: string;
+  res: integer;
 begin
   res := -1;
   Assignfile(F1, fs1);
@@ -983,18 +983,18 @@ end;
 
 Function ParseOracleDate(s: string): string;
 begin
-  s               := StrReplace(s, '.01.', '.jan.');
-  s               := StrReplace(s, '.02.', '.feb.');
-  s               := StrReplace(s, '.03.', '.mar.');
-  s               := StrReplace(s, '.04.', '.apr.');
-  s               := StrReplace(s, '.05.', '.may.');
-  s               := StrReplace(s, '.06.', '.jun.');
-  s               := StrReplace(s, '.07.', '.jul.');
-  s               := StrReplace(s, '.08.', '.aug.');
-  s               := StrReplace(s, '.09.', '.sep.');
-  s               := StrReplace(s, '.10.', '.oct.');
-  s               := StrReplace(s, '.11.', '.nov.');
-  s               := StrReplace(s, '.12.', '.dec.');
+  s := StrReplace(s, '.01.', '.jan.');
+  s := StrReplace(s, '.02.', '.feb.');
+  s := StrReplace(s, '.03.', '.mar.');
+  s := StrReplace(s, '.04.', '.apr.');
+  s := StrReplace(s, '.05.', '.may.');
+  s := StrReplace(s, '.06.', '.jun.');
+  s := StrReplace(s, '.07.', '.jul.');
+  s := StrReplace(s, '.08.', '.aug.');
+  s := StrReplace(s, '.09.', '.sep.');
+  s := StrReplace(s, '.10.', '.oct.');
+  s := StrReplace(s, '.11.', '.nov.');
+  s := StrReplace(s, '.12.', '.dec.');
   ParseOracleDate := s;
 end;
 
@@ -1034,13 +1034,13 @@ end;
 
 function CreateDirEx(Dir: string): boolean;
 var
-  i, L  : integer;
+  i, L: integer;
   CurDir: string;
 begin
   if ExcludeTrailingBackslash(Dir) = '' then
     exit;
-  Dir   := IncludeTrailingBackslash(Dir);
-  L     := length(Dir);
+  Dir := IncludeTrailingBackslash(Dir);
+  L := length(Dir);
   for i := 1 to L do
   begin
     CurDir := CurDir + Dir[i];
@@ -1080,19 +1080,19 @@ var
 begin
   ts := datetostr(Date);
   delete(ts, pos('.', ts), length(ts));
-  s  := StrReplace(s, '%D', ts);
-  s  := StrReplace(s, '%d', inttostr(strtoint(ts)));
+  s := StrReplace(s, '%D', ts);
+  s := StrReplace(s, '%d', inttostr(strtoint(ts)));
   ts := datetostr(Date);
   delete(ts, 1, pos('.', ts));
   delete(ts, pos('.', ts), length(ts));
-  s  := StrReplace(s, '%M', ts);
-  s  := StrReplace(s, '%m', inttostr(strtoint(ts)));
+  s := StrReplace(s, '%M', ts);
+  s := StrReplace(s, '%m', inttostr(strtoint(ts)));
   ts := datetostr(Date);
   delete(ts, 1, pos('.', ts));
   delete(ts, 1, pos('.', ts));
   s := StrReplace(s, '%Y', ts);
   delete(ts, 1, 2);
-  s  := StrReplace(s, '%y', ts);
+  s := StrReplace(s, '%y', ts);
   ts := TimeToStr(Time);
   delete(ts, pos(':', ts), length(ts));
   s := StrReplace(s, '%h', ts);
@@ -1100,16 +1100,16 @@ begin
     s := StrReplace(s, '%H', '0' + inttostr(strtoint(ts)))
   else
     s := StrReplace(s, '%H', inttostr(strtoint(ts)));
-  ts  := TimeToStr(Time);
+  ts := TimeToStr(Time);
   delete(ts, 1, pos(':', ts));
   delete(ts, pos(':', ts), length(ts));
-  s  := StrReplace(s, '%T', ts);
-  s  := StrReplace(s, '%t', inttostr(strtoint(ts)));
+  s := StrReplace(s, '%T', ts);
+  s := StrReplace(s, '%t', inttostr(strtoint(ts)));
   ts := TimeToStr(Time);
   delete(ts, 1, pos(':', ts));
   delete(ts, 1, pos(':', ts));
-  s             := StrReplace(s, '%S', ts);
-  s             := StrReplace(s, '%s', inttostr(strtoint(ts)));
+  s := StrReplace(s, '%S', ts);
+  s := StrReplace(s, '%s', inttostr(strtoint(ts)));
   parsedatetime := s;
 end;
 
@@ -1119,19 +1119,19 @@ var
 begin
   ts := datetostr(d);
   delete(ts, pos('.', ts), length(ts));
-  s  := StrReplace(s, '%D', ts);
-  s  := StrReplace(s, '%d', inttostr(strtoint(ts)));
+  s := StrReplace(s, '%D', ts);
+  s := StrReplace(s, '%d', inttostr(strtoint(ts)));
   ts := datetostr(d);
   delete(ts, 1, pos('.', ts));
   delete(ts, pos('.', ts), length(ts));
-  s  := StrReplace(s, '%M', ts);
-  s  := StrReplace(s, '%m', inttostr(strtoint(ts)));
+  s := StrReplace(s, '%M', ts);
+  s := StrReplace(s, '%m', inttostr(strtoint(ts)));
   ts := datetostr(d);
   delete(ts, 1, pos('.', ts));
   delete(ts, 1, pos('.', ts));
   s := StrReplace(s, '%Y', ts);
   delete(ts, 1, 2);
-  s  := StrReplace(s, '%y', ts);
+  s := StrReplace(s, '%y', ts);
   ts := TimeToStr(d);
   delete(ts, pos(':', ts), length(ts));
   s := StrReplace(s, '%h', ts);
@@ -1139,16 +1139,16 @@ begin
     s := StrReplace(s, '%H', '0' + inttostr(strtoint(ts)))
   else
     s := StrReplace(s, '%H', inttostr(strtoint(ts)));
-  ts  := TimeToStr(d);
+  ts := TimeToStr(d);
   delete(ts, 1, pos(':', ts));
   delete(ts, pos(':', ts), length(ts));
-  s  := StrReplace(s, '%T', ts);
-  s  := StrReplace(s, '%t', inttostr(strtoint(ts)));
+  s := StrReplace(s, '%T', ts);
+  s := StrReplace(s, '%t', inttostr(strtoint(ts)));
   ts := TimeToStr(d);
   delete(ts, 1, pos(':', ts));
   delete(ts, 1, pos(':', ts));
-  s                := StrReplace(s, '%S', ts);
-  s                := StrReplace(s, '%s', inttostr(strtoint(ts)));
+  s := StrReplace(s, '%S', ts);
+  s := StrReplace(s, '%s', inttostr(strtoint(ts)));
   parsedatetimeget := s;
 end;
 
@@ -1179,7 +1179,7 @@ end;
 function pnexte(del: string; var s: string): string;
 var
   ts: string;
-  i : integer;
+  i: integer;
   // st:string;
 begin
   for i := length(s) downto 1 do
@@ -1230,22 +1230,22 @@ begin
     result := arrInp[0]
   else
   begin
-    for i    := 0 to length(arrInp) - 2 do
+    for i := 0 to length(arrInp) - 2 do
       result := result + arrInp[i] + sPart;
-    result   := result + arrInp[length(arrInp) - 1];
+    result := result + arrInp[length(arrInp) - 1];
   end;
 end;
 
 procedure sort(arrInp: ArrOfStr);
 var
   slTmp: TStringList;
-  i    : integer;
+  i: integer;
 begin
   slTmp := TStringList.Create;
   for i := 0 to length(arrInp) - 1 do
     slTmp.Add(arrInp[i]);
   slTmp.sort;
-  for i       := 0 to slTmp.Count - 1 do
+  for i := 0 to slTmp.Count - 1 do
     arrInp[i] := slTmp[i];
   slTmp.Free;
 end;
@@ -1253,13 +1253,13 @@ end;
 procedure rsort(arrInp: ArrOfStr);
 var
   slTmp: TStringList;
-  i    : integer;
+  i: integer;
 begin
   slTmp := TStringList.Create;
   for i := 0 to length(arrInp) - 1 do
     slTmp.Add(arrInp[i]);
   slTmp.sort;
-  for i                         := 0 to slTmp.Count - 1 do
+  for i := 0 to slTmp.Count - 1 do
     arrInp[slTmp.Count - 1 - i] := slTmp[i];
   slTmp.Free;
 end;
@@ -1268,9 +1268,9 @@ Function ParseMySQLDate(s: string): string;
 var
   ts1, ts2, ts3: string;
 begin
-  ts1            := pnext('.', s);
-  ts2            := pnext('.', s);
-  ts3            := s;
+  ts1 := pnext('.', s);
+  ts2 := pnext('.', s);
+  ts3 := s;
   ParseMySQLDate := ts3 + '-' + ts2 + '-' + ts1;
 end;
 
@@ -1279,17 +1279,17 @@ procedure address(s: string; var street: string; var home: string;
 var
   s1, s2, s3: string;
 begin
-  flat   := pnexte(' ', s);
-  home   := pnexte(' ', s);
+  flat := pnexte(' ', s);
+  home := pnexte(' ', s);
   street := s;
 end;
 
 function Mypos(s: string; d: string; p: integer): string;
 var
-  i : integer;
+  i: integer;
   rs: string;
 begin
-  s     := s + d;
+  s := s + d;
   for i := 1 to p do
   begin
     rs := pnext(d, s);
@@ -1302,10 +1302,10 @@ var
   WinCount, AltCount, KoiCount, i, rslt: integer;
 begin
   DetermineCodepage := cpAlt;
-  WinCount          := 0;
-  AltCount          := 0;
-  KoiCount          := 0;
-  for i             := 1 to length(st) do
+  WinCount := 0;
+  AltCount := 0;
+  KoiCount := 0;
+  for i := 1 to length(st) do
   begin
     if st[i] in AltSet then
       inc(AltCount);
@@ -1332,29 +1332,29 @@ function ConvertBankDateToDate(s: string): string;
 var
   rs, ts: string;
 begin
-  rs                    := copy(s, 7, 2) + '.';
-  rs                    := rs + copy(s, 5, 2) + '.';
-  rs                    := rs + copy(s, 1, 4);
+  rs := copy(s, 7, 2) + '.';
+  rs := rs + copy(s, 5, 2) + '.';
+  rs := rs + copy(s, 1, 4);
   ConvertBankDateToDate := rs;
 end;
 
 function MyposReplace(sin: string; d: string; p: integer; sub: string): string;
 var
   s, s1, s2: string;
-  i        : integer;
+  i: integer;
 begin
   for i := 1 to p - 1 do
   begin
     s := s + pnext(d, sin) + d;
   end;
   pnext(d, sin);
-  s            := s + sub + d + sin;
+  s := s + sub + d + sin;
   MyposReplace := s;
 
 end;
 
 begin
   MaskString := '*.*';
-  Bufsize    := 32768;
+  Bufsize := 32768;
 
 end.
