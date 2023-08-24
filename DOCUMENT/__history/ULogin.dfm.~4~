@@ -1,0 +1,67 @@
+object FLogin: TFLogin
+  Left = 0
+  Top = 0
+  BorderStyle = bsSingle
+  Caption = #1042#1093#1086#1076' '#1074' '#1087#1088#1086#1075#1088#1072#1084#1084#1091' '#1053#1072#1082#1083#1072#1076#1085#1099#1077
+  ClientHeight = 96
+  ClientWidth = 488
+  Color = clBtnFace
+  Font.Charset = DEFAULT_CHARSET
+  Font.Color = clWindowText
+  Font.Height = -21
+  Font.Name = 'Tahoma'
+  Font.Style = []
+  OldCreateOrder = False
+  Position = poScreenCenter
+  PixelsPerInch = 96
+  TextHeight = 25
+  object Label1: TLabel
+    Left = 8
+    Top = 16
+    Width = 65
+    Height = 25
+    Caption = #1051#1086#1075#1080#1085':'
+  end
+  object Label2: TLabel
+    Left = 0
+    Top = 52
+    Width = 78
+    Height = 25
+    Caption = #1055#1072#1088#1086#1083#1100':'
+  end
+  object Edit1: TEdit
+    Left = 84
+    Top = 13
+    Width = 225
+    Height = 33
+    TabOrder = 0
+    Text = 'Edit1'
+  end
+  object Edit2: TEdit
+    Left = 84
+    Top = 52
+    Width = 225
+    Height = 33
+    TabOrder = 1
+    Text = 'Edit2'
+  end
+  object BitBtn1: TBitBtn
+    Left = 319
+    Top = 3
+    Width = 161
+    Height = 43
+    Kind = bkOK
+    NumGlyphs = 2
+    TabOrder = 2
+  end
+  object BitBtn2: TBitBtn
+    Left = 320
+    Top = 46
+    Width = 161
+    Height = 45
+    Caption = #1054#1090#1084#1077#1085#1072
+    Kind = bkCancel
+    NumGlyphs = 2
+    TabOrder = 3
+  end
+end

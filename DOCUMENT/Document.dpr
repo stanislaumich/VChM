@@ -4,7 +4,8 @@ uses
   Vcl.Forms,
   UMAIN in 'UMAIN.pas' {Form1},
   USett in 'USett.pas' {FSett},
-  UArc in 'UArc.pas' {FArc};
+  UArc in 'UArc.pas' {FArc},
+  Ustr in 'Ustr.pas';
 
 {$R *.res}
 

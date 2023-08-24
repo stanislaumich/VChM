@@ -13,6 +13,11 @@ object Form1: TForm1
   Font.Style = []
   OldCreateOrder = False
   Position = poScreenCenter
+  OnClose = FormClose
+  OnCreate = FormCreate
+  DesignSize = (
+    1108
+    797)
   PixelsPerInch = 96
   TextHeight = 39
   object Label1: TLabel
@@ -103,6 +108,7 @@ object Form1: TForm1
       FAFAFAFAFAFAFAFAFAFAFAFAFAFAFAFAFAFAFAFAFAFAFAFAFAFAFAFAFAFAFAFA
       FAFAFAFAFAFAFAFAFAFAFAFAFAFAFAFAFAFAFAFAFAFAFAFAFAFA}
     TabOrder = 0
+    OnClick = BitBtn1Click
   end
   object BitBtn2: TBitBtn
     Left = 4
@@ -178,6 +184,7 @@ object Form1: TForm1
       070809090A0B0C0D0D0E0F101111121314151617181818181818181818181818
       1818181818181818181818181818181818181818181818181818}
     TabOrder = 1
+    OnClick = BitBtn2Click
   end
   object Edit1: TEdit
     Left = 4
@@ -265,7 +272,8 @@ object Form1: TForm1
     Left = 395
     Top = 8
     Width = 710
-    Height = 606
+    Height = 573
+    Anchors = [akLeft, akTop, akRight, akBottom]
     TabOrder = 5
   end
   object GroupBox2: TGroupBox
@@ -273,6 +281,7 @@ object Form1: TForm1
     Top = 620
     Width = 709
     Height = 169
+    Anchors = [akLeft, akRight, akBottom]
     TabOrder = 6
     object BitBtn4: TBitBtn
       Left = 444
@@ -407,6 +416,14 @@ object Form1: TForm1
       OnClick = BitBtn5Click
     end
   end
+  object ProgressBar1: TProgressBar
+    Left = 396
+    Top = 588
+    Width = 709
+    Height = 25
+    Anchors = [akLeft, akRight, akBottom]
+    TabOrder = 7
+  end
   object ActionList1: TActionList
     Left = 1028
     Top = 32
@@ -425,5 +442,32 @@ object Form1: TForm1
       ShortCut = 119
       OnExecute = Action3Execute
     end
+  end
+  object FDC: TFDConnection
+    Params.Strings = (
+      'DriverID=Ora'
+      'Password=vcm'
+      'User_Name=vcm'
+      'Database=XE')
+    Connected = True
+    LoginPrompt = False
+    Left = 284
+    Top = 228
+  end
+  object QLog: TFDQuery
+    Connection = FDC
+    SQL.Strings = (
+      'insert into log(tip,text)values(:tip,:text)')
+    Left = 324
+    Top = 228
+    ParamData = <
+      item
+        Name = 'TIP'
+        ParamType = ptInput
+      end
+      item
+        Name = 'TEXT'
+        ParamType = ptInput
+      end>
   end
 end

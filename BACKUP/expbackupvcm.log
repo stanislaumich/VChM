@@ -14,12 +14,12 @@ About to export VCM's objects ...
 . exporting sequence numbers
 . exporting cluster definitions
 . about to export VCM's tables via Conventional Path ...
-. . exporting table                           BLOG
-                                                            0 rows exported
-EXP-00091: Exporting questionable statistics.
-EXP-00091: Exporting questionable statistics.
 . . exporting table                          FILES
                                                             0 rows exported
+. . exporting table                            LOG
+                                                           10 rows exported
+EXP-00091: Exporting questionable statistics.
+EXP-00091: Exporting questionable statistics.
 . . exporting table                            NAK
                                                             0 rows exported
 EXP-00091: Exporting questionable statistics.

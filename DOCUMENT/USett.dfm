@@ -12,6 +12,7 @@ object FSett: TFSett
   Font.Style = []
   OldCreateOrder = False
   Position = poScreenCenter
+  OnClose = FormClose
   PixelsPerInch = 96
   TextHeight = 25
   object Label1: TLabel
@@ -124,5 +125,13 @@ object FSett: TFSett
     Height = 33
     TabOrder = 3
     Text = 'Edit3'
+  end
+  object CheckBox1: TCheckBox
+    Left = 8
+    Top = 156
+    Width = 337
+    Height = 25
+    Caption = #1047#1072#1087#1088#1072#1096#1080#1074#1072#1090#1100' '#1087#1072#1088#1086#1083#1100' '#1087#1088#1080' '#1074#1093#1086#1076#1077
+    TabOrder = 4
   end
 end

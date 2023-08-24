@@ -15,7 +15,9 @@ type
     BitBtn1: TBitBtn;
     Label3: TLabel;
     Edit3: TEdit;
+    CheckBox1: TCheckBox;
     procedure BitBtn1Click(Sender: TObject);
+    procedure FormClose(Sender: TObject; var Action: TCloseAction);
   private
     { Private declarations }
   public
@@ -28,12 +30,21 @@ var
 implementation
 
 {$R *.dfm}
-
+uses umain;
 procedure TFSett.BitBtn1Click(Sender: TObject);
 begin
 
 
  FSett.Close;
+end;
+
+procedure TFSett.FormClose(Sender: TObject; var Action: TCloseAction);
+begin
+ umain.uselogin:=CheckBox1.Checked;
+ umain.infolder  := Edit1.Text;
+ umain.arcfolder := Edit2.Text;
+ umain.scaner    := Edit3.Text;
+
 end;
 
 end.
