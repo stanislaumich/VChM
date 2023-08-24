@@ -1,9 +1,15 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <BorlandProject>
-  <Transactions>
-    <Transaction>2023.08.23 10:53:19.380,=S:\_programming\Unit1.pas</Transaction>
-    <Transaction>2023.08.23 10:54:40.404,S:\VChM\DOCUMENT\UMAIN.pas=S:\_programming\Unit1.pas</Transaction>
-    <Transaction>2023.08.23 10:54:40.404,S:\VChM\DOCUMENT\UMAIN.dfm=S:\_programming\Unit1.dfm</Transaction>
-    <Transaction>2023.08.23 10:54:52.669,S:\VChM\DOCUMENT\Document.dproj=S:\_programming\Project1.dproj</Transaction>
+	<Transactions>
+    <Transaction>1899.12.30 00:00:00.000.380,=S:\_programming\Unit1.pas</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.404,S:\_programming\Unit1.pas=S:\VChM\DOCUMENT\UMAIN.pas</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.404,S:\_programming\Unit1.dfm=S:\VChM\DOCUMENT\UMAIN.dfm</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.669,S:\_programming\Project1.dproj=S:\VChM\DOCUMENT\Document.dproj</Transaction>
+    <Transaction>2023.08.24 08:51:11.156,=S:\VChM\DOCUMENT\Unit2.pas</Transaction>
+    <Transaction>2023.08.24 08:52:47.520,S:\VChM\DOCUMENT\USett.dfm=S:\VChM\DOCUMENT\Unit2.dfm</Transaction>
+    <Transaction>2023.08.24 08:52:47.520,S:\VChM\DOCUMENT\USett.pas=S:\VChM\DOCUMENT\Unit2.pas</Transaction>
+    <Transaction>2023.08.24 08:57:38.621,=S:\VChM\DOCUMENT\Unit2.pas</Transaction>
+    <Transaction>2023.08.24 08:58:56.278,S:\VChM\DOCUMENT\UArc.pas=S:\VChM\DOCUMENT\Unit2.pas</Transaction>
+    <Transaction>2023.08.24 08:58:56.278,S:\VChM\DOCUMENT\UArc.dfm=S:\VChM\DOCUMENT\Unit2.dfm</Transaction>
   </Transactions>
 </BorlandProject>

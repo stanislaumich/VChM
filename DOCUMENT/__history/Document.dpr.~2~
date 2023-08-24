@@ -1,0 +1,16 @@
+program Document;
+
+uses
+  Vcl.Forms,
+  UMAIN in 'UMAIN.pas' {Form1},
+  USett in 'USett.pas' {FSett};
+
+{$R *.res}
+
+begin
+  Application.Initialize;
+  Application.MainFormOnTaskbar := True;
+  Application.CreateForm(TForm1, Form1);
+  Application.CreateForm(TFSett, FSett);
+  Application.Run;
+end.
