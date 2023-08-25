@@ -187,7 +187,6 @@ begin
     // и попытаться получить номер накладной пока сделаем это руками
 
     FNomer.Edit1.Text:='123456789';
-
     FNomer.Showmodal;
     Edit1.Text:=Fnomer.Edit1.Text;
     // продолжаем обработку

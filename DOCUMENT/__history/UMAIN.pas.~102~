@@ -68,7 +68,7 @@ implementation
 
 {$R *.dfm}
 
-uses USett, UArc;
+uses USett, UArc, UNomer;
 
 function TForm1.getsql(s: string): string;
 begin
@@ -178,6 +178,19 @@ begin
     sl.Delete(0);
     // for i := 0 to memo1.lines.count-1 do
     // sl.add(Memo1.lines[i]);
+    if sl.Count=0 then
+     begin
+      ShowMessage('Не найдено отсканированых файлов!');
+      Exit;
+     end;
+    // тут можно конвертировать файлы в нужный формат при необходимости
+    // и попытаться получить номер накладной пока сделаем это руками
+
+    FNomer.Edit1.Text:='123456789';
+
+    FNomer.Showmodal;
+    Edit1.Text:=Fnomer.Edit1.Text;
+    // продолжаем обработку
     ProgressBar1.Max := sl.Count;
     for i := 0 to sl.Count - 1 do
     begin
@@ -198,9 +211,13 @@ begin
         begin
             // переносим
             s := sl[i];
-            MoveFile(PChar(s), PChar(currdir + '\' + extractfilename(s)));
+            if MoveFile(PChar(s), PChar(currdir + '\'+Edit1.Text+ '_' + extractfilename(s)))=false then
+             begin
+              ShowMessage('Файл для такой накладной уже существует в архивной папке');
+              merr :=merr + 1;
+             end;
             // проверяем
-            assignfile(f, currdir + '\' + extractfilename(s));
+            assignfile(f, currdir + '\'+Edit1.Text+ '_' + extractfilename(s));
             reset(f);
             j := filesize(f);
             if j = 0 then
@@ -210,7 +227,7 @@ begin
             end
             else
             begin
-                sr.Add(currdir + '\' + extractfilename(s));
+                sr.Add(currdir + '\'+Edit1.Text+ '_' + extractfilename(s));
                 Closefile(f);
             end;
         end;
@@ -222,8 +239,8 @@ begin
             QWork.SQL.Clear;
             QWork.SQL.Add(getsql('insertnewnak'));
             //memo1.lines.add( getsql('insertnewnak'));
-            QWork.ParamByName('num').AsString := Quotedstr(Edit1.Text);
-            QWork.ParamByName('dop').AsString := QuotedStr('');
+            QWork.ParamByName('num').AsString := Edit1.Text;
+            QWork.ParamByName('dop').AsString := '';
 
             QWork.ExecSQL;
             QWork.Close;
@@ -241,8 +258,8 @@ begin
             for i := 0 to sr.Count - 1 do
             begin
              QWork.ParamByName('idnak').Asinteger:=lastid;
-             QWork.ParamByName('fname').AsString:=Quotedstr(sr[i]);
-             QWork.ParamByName('dop').AsString:=Quotedstr('');
+             QWork.ParamByName('fname').AsString:=sr[i];
+             QWork.ParamByName('dop').AsString:='';
              QWork.ExecSQL;
             end;
 
