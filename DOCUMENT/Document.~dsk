@@ -1,32 +1,47 @@
 ﻿[Closed Files]
-File_0=TSourceModule,'S:\VChM\ZXing.Delphi\demo\vclTestApp\MainForm.pas',0,1,37,34,52,0,0,,
-File_1=TSourceModule,'S:\VChM\ZXing.Delphi\Lib\Classes\ZXing.ScanManager.pas',0,1,120,66,141,0,0,,
-File_2=TSourceModule,'S:\VChM\ZXing.Delphi\Lib\Classes\Common\ZXing.ReadResult.pas',0,1,43,1,64,0,0,{{153,0},{241,39},{'IMetaData implementations'}},
-File_3=TSourceModule,'S:\VChM\ZXing.Delphi\Lib\Classes\Common\ZXing.BarcodeFormat.pas',0,1,61,1,24,0,0,,
-File_4=TSourceModule,'S:\GAZETA\UCreate.pas',0,1,406,46,435,0,0,,
-File_5=TSourceModule,'S:\GAZETA\UMain.pas',0,1,255,84,273,0,0,,
-File_6=TSourceModule,'S:\GAZETA\USett.pas',0,1,162,9,192,0,0,,
-File_7=TSourceModule,'S:\GAZETA\Ustr.pas',0,1,1,1,1,0,0,,
-File_8=TSourceModule,'S:\GAZETA\UKontr.pas',0,1,394,32,233,0,0,,
-File_9=TSourceModule,'S:\GAZETA\UUsl.pas',0,1,88,24,119,0,0,,
-File_10=TSourceModule,'c:\program files (x86)\embarcadero\studio\21.0\SOURCE\RTL\SYS\System.pas',0,1,21648,32,21661,0,0,,
-File_11=TSourceModule,'c:\program files (x86)\embarcadero\studio\21.0\SOURCE\RTL\SYS\System.SysUtils.pas',0,1,5604,1,5623,0,0,,
-File_12=TSourceModule,'S:\ZAMER\UReg\UReg.pas',0,1,206,7,225,0,0,,
-File_13=TSourceModule,'S:\ZAMER\ZamerV2\Uzv2Main.pas',0,1,968,42,1000,0,0,,
-File_14=TSourceModule,'S:\ZAMER\ZamerV2\URH.pas',0,1,677,1,677,0,0,,
+File_0=TSourceModule,'c:\program files (x86)\embarcadero\studio\21.0\source\rtl\common\System.Classes.pas',0,1,18157,48,18178,0,0,,
+File_1=TSourceModule,'c:\program files (x86)\embarcadero\studio\21.0\SOURCE\VCL\Vcl.Controls.pas',0,1,10100,1,10121,0,0,,
+File_2=TSourceModule,'S:\VChM\DOCUMENT\ULogin.pas',0,1,1,1,1,0,0,,
+File_3=TSourceModule,'c:\program files (x86)\embarcadero\studio\21.0\SOURCE\RTL\SYS\System.pas',0,1,21648,1,21667,0,0,,
+File_4=TSourceModule,'S:\VChM\ZXing.Delphi\demo\vclTestApp\MainForm.pas',0,1,37,34,52,0,0,,
+File_5=TSourceModule,'S:\VChM\ZXing.Delphi\Lib\Classes\ZXing.ScanManager.pas',0,1,120,66,141,0,0,,
+File_6=TSourceModule,'S:\VChM\ZXing.Delphi\Lib\Classes\Common\ZXing.ReadResult.pas',0,1,43,1,64,0,0,{{153,0}
+File_7=TSourceModule,'S:\VChM\ZXing.Delphi\Lib\Classes\Common\ZXing.BarcodeFormat.pas',0,1,61,1,24,0,0,,
+File_8=TSourceModule,'S:\GAZETA\UCreate.pas',0,1,406,46,435,0,0,,
+File_9=TSourceModule,'S:\GAZETA\UMain.pas',0,1,255,84,273,0,0,,
+File_10=TSourceModule,'S:\GAZETA\USett.pas',0,1,162,9,192,0,0,,
+File_11=TSourceModule,'S:\GAZETA\Ustr.pas',0,1,1,1,1,0,0,,
+File_12=TSourceModule,'S:\GAZETA\UKontr.pas',0,1,394,32,233,0,0,,
+File_13=TSourceModule,'S:\GAZETA\UUsl.pas',0,1,88,24,119,0,0,,
+File_14=TSourceModule,'c:\program files (x86)\embarcadero\studio\21.0\SOURCE\RTL\SYS\System.SysUtils.pas',0,1,5604,1,5623,0,0,,
 
 [Modules]
 Module0=S:\VChM\DOCUMENT\UMAIN.pas
-Count=1
+Module1=S:\VChM\DOCUMENT\Ustr.pas
+Module2=S:\VChM\DOCUMENT\USett.pas
+Module3=S:\VChM\DOCUMENT\UArc.pas
+Count=4
 EditWindowCount=1
 
 [S:\VChM\DOCUMENT\UMAIN.pas]
 ModuleType=TSourceModule
 
+[S:\VChM\DOCUMENT\Ustr.pas]
+ModuleType=TSourceModule
+
+[S:\VChM\DOCUMENT\USett.pas]
+ModuleType=TSourceModule
+
+[S:\VChM\DOCUMENT\UArc.pas]
+ModuleType=TSourceModule
+
 [EditWindow0]
-ViewCount=1
+ViewCount=4
 CurrentEditView=S:\VChM\DOCUMENT\UMAIN.pas
 View0=0
+View1=1
+View2=2
+View3=3
 PercentageSizes=1
 Create=1
 Visible=1
@@ -59,9 +74,42 @@ BottomMiddelPanelData=0000080001020200000009000000446F636B5369746530100000004772
 [View0]
 CustomEditViewType=TEditView
 Module=S:\VChM\DOCUMENT\UMAIN.pas
-CursorX=16
-CursorY=41
-TopLine=39
+CursorX=21
+CursorY=209
+TopLine=191
+LeftCol=1
+Elisions=
+Bookmarks=
+EditViewName=S:\VChM\DOCUMENT\UMAIN.pas
+
+[View1]
+CustomEditViewType=TEditView
+Module=S:\VChM\DOCUMENT\Ustr.pas
+CursorX=1
+CursorY=1019
+TopLine=998
+LeftCol=1
+Elisions=
+Bookmarks=
+EditViewName=S:\VChM\DOCUMENT\Ustr.pas
+
+[View2]
+CustomEditViewType=TEditView
+Module=S:\VChM\DOCUMENT\USett.pas
+CursorX=5
+CursorY=52
+TopLine=1
+LeftCol=1
+Elisions=
+Bookmarks=
+EditViewName=S:\VChM\DOCUMENT\USett.pas
+
+[View3]
+CustomEditViewType=TEditView
+Module=S:\VChM\DOCUMENT\UArc.pas
+CursorX=1
+CursorY=1
+TopLine=1
 LeftCol=1
 Elisions=
 Bookmarks=
@@ -149,7 +197,7 @@ Visible=0
 Docked=1
 State=0
 Left=0
-Top=28
+Top=0
 Width=2771
 Height=1415
 MaxLeft=-1
@@ -194,16 +242,11 @@ MaxLeft=-1
 MaxTop=-1
 ClientWidth=1896
 ClientHeight=4874
-TBDockHeight=8721
+TBDockHeight=5194
 LRDockWidth=1896
 Dockable=1
 StayOnTop=0
 SplitPos=111
-
-[PropInspDesignerSelection]
-ArrangeBy=Name
-SelectedItem=Caption,
-ExpandedItems=Anchors=0,Constraints=0,BorderIcons=0,CustomTitleBar=0,Font=1,GlassFrame=0,HorzScrollBar=0,LiveBindings=0,"LiveBindings Designer=0",Margins=0,Padding=0,Font.Style=0
 
 [frmDesignPreview]
 PercentageSizes=1
@@ -214,11 +257,11 @@ State=0
 Left=0
 Top=0
 Width=2000
-Height=6366
+Height=2907
 MaxLeft=-1
 MaxTop=-1
 ClientWidth=2000
-ClientHeight=6366
+ClientHeight=2907
 TBDockHeight=5959
 LRDockWidth=2510
 Dockable=1
@@ -230,8 +273,8 @@ Create=1
 Visible=0
 Docked=1
 State=0
-Left=-1528
-Top=243
+Left=0
+Top=0
 Width=276
 Height=359
 MaxLeft=-1
@@ -335,11 +378,11 @@ State=0
 Left=0
 Top=0
 Width=2339
-Height=969
+Height=1202
 MaxLeft=-1
 MaxTop=-1
 ClientWidth=2339
-ClientHeight=969
+ClientHeight=1202
 TBDockHeight=2316
 LRDockWidth=2823
 Dockable=1
@@ -400,11 +443,11 @@ State=0
 Left=0
 Top=0
 Width=2000
-Height=6366
+Height=0
 MaxLeft=-1
 MaxTop=-1
 ClientWidth=2000
-ClientHeight=6366
+ClientHeight=0
 TBDockHeight=4884
 LRDockWidth=7151
 Dockable=1
@@ -416,8 +459,8 @@ Create=1
 Visible=0
 Docked=1
 State=0
-Left=380
-Top=809
+Left=0
+Top=0
 Width=2854
 Height=3207
 MaxLeft=-1
@@ -435,8 +478,8 @@ Create=1
 Visible=0
 Docked=1
 State=0
-Left=-8
-Top=-124
+Left=-406
+Top=-451
 Width=1849
 Height=3140
 MaxLeft=-1
@@ -540,11 +583,11 @@ State=0
 Left=0
 Top=0
 Width=2000
-Height=6366
+Height=0
 MaxLeft=-1
 MaxTop=-1
 ClientWidth=2000
-ClientHeight=6366
+ClientHeight=0
 TBDockHeight=4884
 LRDockWidth=5307
 Dockable=1
@@ -604,8 +647,8 @@ Create=1
 Visible=0
 Docked=1
 State=0
-Left=0
-Top=28
+Left=8
+Top=8
 Width=3823
 Height=1415
 MaxLeft=-1
@@ -636,7 +679,7 @@ MaxLeft=-1
 MaxTop=-1
 ClientWidth=2000
 ClientHeight=4545
-TBDockHeight=8721
+TBDockHeight=4603
 LRDockWidth=2000
 Dockable=1
 StayOnTop=0
@@ -660,7 +703,7 @@ MaxLeft=-1
 MaxTop=-1
 ClientWidth=1896
 ClientHeight=3498
-TBDockHeight=8721
+TBDockHeight=3556
 LRDockWidth=1896
 Dockable=1
 StayOnTop=0
@@ -684,7 +727,7 @@ MaxLeft=-1
 MaxTop=-1
 ClientWidth=2000
 ClientHeight=3828
-TBDockHeight=8721
+TBDockHeight=4147
 LRDockWidth=2000
 Dockable=1
 StayOnTop=0

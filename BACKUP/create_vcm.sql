@@ -7,6 +7,7 @@ shutdown immediate;
 startup;
 --alter session set "_ORACLE_SCRIPT"=true;
 drop user vcm cascade;
+ALTER PROFILE default LIMIT password_life_time UNLIMITED;
 create user vcm identified by vcm default tablespace users temporary tablespace temp;
 grant dba to vcm;
 grant create session to vcm;

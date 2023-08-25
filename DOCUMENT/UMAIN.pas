@@ -33,6 +33,8 @@ type
         FDC: TFDConnection;
         QLog: TFDQuery;
         ProgressBar1: TProgressBar;
+        QGetSQL: TFDQuery;
+        QWork: TFDQuery;
         procedure Action1Execute(Sender: TObject);
         procedure Action2Execute(Sender: TObject);
         procedure Action3Execute(Sender: TObject);
@@ -46,6 +48,7 @@ type
         procedure BitBtn2Click(Sender: TObject);
         function WorkFile(s: string): integer;
         function trytofindnum(s: string): string;
+        function getsql(s: string): string;
     private
         { Private declarations }
     public
@@ -66,6 +69,13 @@ implementation
 {$R *.dfm}
 
 uses USett, UArc;
+
+function TForm1.getsql(s: string): string;
+begin
+    // QGetsql.Close;
+    QGetSQL.Open('select value from sql where name=' + Quotedstr(s));
+    getsql := QGetSQL.FieldByName('value').AsString;
+end;
 
 procedure TForm1.log(tip: integer; s: string);
 begin
@@ -144,9 +154,10 @@ end;
 procedure TForm1.BitBtn2Click(Sender: TObject);
 var
     sl, sr: tstringlist;
-    s: string;
+    s, qs, lastnum: string;
     f: file;
     i, err, merr: integer;
+    lastid: longint;
     j: longint;
 begin
     // забрать из папки, что можно распознать
@@ -155,18 +166,23 @@ begin
     // скопировать файлы в папку архива, если удачно -
     // поставить метку ОК, или продумать другой механизм
     // контроля
-    sl:=Tstringlist.Create;
-    sr:=Tstringlist.Create;
-    Edit1.Text := '';
+    sl := tstringlist.Create;
+    sr := tstringlist.Create;
+    //Edit1.Text := '';
     err := 0;
     ProgressBar1.Position := 0;
     ProgressBar1.Step := 1;
-    //Memo1.lines.Clear;
+    // Memo1.lines.Clear;
     listfiledir(infolder + '\', sl, '*.*');
     sl.Delete(0);
     sl.Delete(0);
-    //for i := 0 to memo1.lines.count-1 do
+    // for i := 0 to memo1.lines.count-1 do
     // sl.add(Memo1.lines[i]);
+    if sl.Count=0 then
+     begin
+      ShowMessage('Не найдено отсканированых файлов!');
+      Exit;
+     end;
     ProgressBar1.Max := sl.Count;
     for i := 0 to sl.Count - 1 do
     begin
@@ -187,9 +203,13 @@ begin
         begin
             // переносим
             s := sl[i];
-            MoveFile(PChar(s), PChar(currdir + '\' + extractfilename(s)));
+            if MoveFile(PChar(s), PChar(currdir + '\'+Edit1.Text+ '_' + extractfilename(s)))=false then
+             begin
+              ShowMessage('Файл для такой накладной уже существует в архивной папке');
+              merr :=merr + 1;
+             end;
             // проверяем
-            assignfile(f, currdir + '\' + extractfilename(s));
+            assignfile(f, currdir + '\'+Edit1.Text+ '_' + extractfilename(s));
             reset(f);
             j := filesize(f);
             if j = 0 then
@@ -198,18 +218,44 @@ begin
                 Closefile(f);
             end
             else
-             begin
-              sr.Add(currdir + '\' + extractfilename(s));
-              Closefile(f);
-             end;
+            begin
+                sr.Add(currdir + '\'+Edit1.Text+ '_' + extractfilename(s));
+                Closefile(f);
+            end;
         end;
         if merr = 0 then
         begin // файлы на месте, вносим в базу   SR
-         memo1.lines:=sr;
+            Memo1.lines := sr;
+            // вносим запись накладной
+            QWork.Close;
+            QWork.SQL.Clear;
+            QWork.SQL.Add(getsql('insertnewnak'));
+            //memo1.lines.add( getsql('insertnewnak'));
+            QWork.ParamByName('num').AsString := Edit1.Text;
+            QWork.ParamByName('dop').AsString := '';
 
+            QWork.ExecSQL;
+            QWork.Close;
+            QWork.SQL.Clear;
+            QWork.SQL.Add(getsql('getlastnak'));
+            QWork.Open();
+            lastid := QWork.FieldByName('id').AsInteger;
+            lastnum := QWork.FieldByName('num').AsString;
+            // запись создана, номера известны
+{INSERT INTO VCM.FILES (   ID, IDNAK, FNAME,   DOP) VALUES ( null, :IDNAK,  :FNAME,  :DOP);}
+            // вносим файлы для этой записи
+            QWork.Close;
+            QWork.SQL.Clear;
+            QWork.SQL.Add(Getsql('insertnewfile'));
+            for i := 0 to sr.Count - 1 do
+            begin
+             QWork.ParamByName('idnak').Asinteger:=lastid;
+             QWork.ParamByName('fname').AsString:=sr[i];
+             QWork.ParamByName('dop').AsString:='';
+             QWork.ExecSQL;
+            end;
 
-
-         ShowMessage('Отлично!!');
+            ShowMessage('Отлично!!');
         end
         else
         begin // не удалось перенести файлы нечего и вносить
@@ -221,8 +267,8 @@ begin
         ShowMessage('При обработке файлов обнаружены пустые файлы');
     end;
 
-   sl.Free;
-   sr.free;
+    sl.Free;
+    sr.Free;
 end;
 
 procedure TForm1.BitBtn4Click(Sender: TObject);
@@ -251,7 +297,7 @@ begin
     arcfolder := ini.ReadString('MAIN', 'ArcFolder', '');
     scaner := ini.ReadString('MAIN', 'Scaner', '');
 
-    ini.free;
+    ini.Free;
 
     createcurrdir(arcfolder);
     log(0, 'Запуск программы');
@@ -267,7 +313,7 @@ begin
     ini.WriteString('MAIN', 'ArcFolder', arcfolder);
     ini.WriteString('MAIN', 'Scaner', scaner);
 
-    ini.free;
+    ini.Free;
     log(0, 'Завершение программы');
 end;
 

@@ -17,17 +17,15 @@ About to export VCM's objects ...
 . . exporting table                          FILES
                                                             0 rows exported
 . . exporting table                            LOG
-                                                           47 rows exported
+                                                           72 rows exported
 EXP-00091: Exporting questionable statistics.
 EXP-00091: Exporting questionable statistics.
 . . exporting table                            NAK
                                                             0 rows exported
 EXP-00091: Exporting questionable statistics.
+. . exporting table                            SQL
+                                                            3 rows exported
 . . exporting table                            USR
-                                                            0 rows exported
-EXP-00091: Exporting questionable statistics.
-EXP-00091: Exporting questionable statistics.
-. . exporting table                           WLOG
                                                             0 rows exported
 EXP-00091: Exporting questionable statistics.
 EXP-00091: Exporting questionable statistics.

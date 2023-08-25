@@ -471,4 +471,14 @@ object Form1: TForm1
         ParamType = ptInput
       end>
   end
+  object QGetSQL: TFDQuery
+    Connection = FDC
+    Left = 124
+    Top = 340
+  end
+  object QWork: TFDQuery
+    Connection = FDC
+    Left = 176
+    Top = 340
+  end
 end
