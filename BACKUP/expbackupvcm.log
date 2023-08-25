@@ -15,13 +15,13 @@ About to export VCM's objects ...
 . exporting cluster definitions
 . about to export VCM's tables via Conventional Path ...
 . . exporting table                          FILES
-                                                            0 rows exported
+                                                            8 rows exported
 . . exporting table                            LOG
-                                                           72 rows exported
+                                                           76 rows exported
 EXP-00091: Exporting questionable statistics.
 EXP-00091: Exporting questionable statistics.
 . . exporting table                            NAK
-                                                            0 rows exported
+                                                            1 rows exported
 EXP-00091: Exporting questionable statistics.
 . . exporting table                            SQL
                                                             3 rows exported

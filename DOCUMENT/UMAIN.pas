@@ -68,7 +68,7 @@ implementation
 
 {$R *.dfm}
 
-uses USett, UArc;
+uses USett, UArc, UNomer;
 
 function TForm1.getsql(s: string): string;
 begin
@@ -168,7 +168,7 @@ begin
     // контрол€
     sl := tstringlist.Create;
     sr := tstringlist.Create;
-    //Edit1.Text := '';
+    Edit1.Text := '';
     err := 0;
     ProgressBar1.Position := 0;
     ProgressBar1.Step := 1;
@@ -183,6 +183,14 @@ begin
       ShowMessage('Ќе найдено отсканированых файлов!');
       Exit;
      end;
+    // тут можно конвертировать файлы в нужный формат при необходимости
+    // и попытатьс€ получить номер накладной пока сделаем это руками
+
+    FNomer.Edit1.Text:='123456789';
+
+    FNomer.Showmodal;
+    Edit1.Text:=Fnomer.Edit1.Text;
+    // продолжаем обработку
     ProgressBar1.Max := sl.Count;
     for i := 0 to sl.Count - 1 do
     begin
