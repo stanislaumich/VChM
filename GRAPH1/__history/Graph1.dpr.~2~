@@ -11,5 +11,4 @@ begin
   Application.MainFormOnTaskbar := True;
   Application.CreateForm(TFMain, FMain);
   Application.Run;
-
 end.

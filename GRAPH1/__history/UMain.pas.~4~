@@ -29,13 +29,11 @@ implementation
 {$R *.dfm}
 
 {
-  https://skachivaem.ru/articles/50-delphi/217--delphi.html
+
   procedure DrawGraph (f: TFunc; a: real; b: real; C: TCanvas);
   «аголовок функции. ѕараметры: f Ц функци€, график, которой будем троить.
   a Ц начальное значение переменной УxФ. b Ц конечное значение переменной УxФ.
   C Ц канва, на которой будем рисовать.
-
-
 }
 Type
     TFunc = function(x: real): real;
