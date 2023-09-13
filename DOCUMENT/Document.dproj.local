@@ -1,23 +1,23 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <BorlandProject>
 	<Transactions>
-    <Transaction>1899.12.30 00:00:00.000.960,=S:\VChM\DOCUMENT\Unit2.pas</Transaction>
-    <Transaction>1899.12.30 00:00:00.000.621,=S:\VChM\DOCUMENT\Unit2.pas</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.099,=S:\VChM\DOCUMENT\Unit2.pas</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.156,=S:\VChM\DOCUMENT\Unit2.pas</Transaction>
     <Transaction>1899.12.30 00:00:00.000.380,=S:\_programming\Unit1.pas</Transaction>
     <Transaction>1899.12.30 00:00:00.000.404,S:\_programming\Unit1.pas=S:\VChM\DOCUMENT\UMAIN.pas</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.621,=S:\VChM\DOCUMENT\Unit2.pas</Transaction>
     <Transaction>1899.12.30 00:00:00.000.520,S:\VChM\DOCUMENT\USett.dfm=S:\VChM\DOCUMENT\Unit2.dfm</Transaction>
     <Transaction>1899.12.30 00:00:00.000.404,S:\_programming\Unit1.dfm=S:\VChM\DOCUMENT\UMAIN.dfm</Transaction>
     <Transaction>1899.12.30 00:00:00.000.171,S:\VChM\DOCUMENT\ULogin.dfm=S:\VChM\DOCUMENT\Unit2.dfm</Transaction>
-    <Transaction>1899.12.30 00:00:00.000.156,=S:\VChM\DOCUMENT\Unit2.pas</Transaction>
-    <Transaction>1899.12.30 00:00:00.000.669,S:\_programming\Project1.dproj=S:\VChM\DOCUMENT\Document.dproj</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.960,=S:\VChM\DOCUMENT\Unit2.pas</Transaction>
     <Transaction>1899.12.30 00:00:00.000.898,=S:\VChM\DOCUMENT\Ustr.pas</Transaction>
     <Transaction>1899.12.30 00:00:00.000.520,S:\VChM\DOCUMENT\USett.pas=S:\VChM\DOCUMENT\Unit2.pas</Transaction>
     <Transaction>1899.12.30 00:00:00.000.906,S:\VChM\DOCUMENT\ULogin.pas=</Transaction>
     <Transaction>1899.12.30 00:00:00.000.171,S:\VChM\DOCUMENT\ULogin.pas=S:\VChM\DOCUMENT\Unit2.pas</Transaction>
-    <Transaction>1899.12.30 00:00:00.000.278,S:\VChM\DOCUMENT\UArc.pas=S:\VChM\DOCUMENT\Unit2.pas</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.397,S:\VChM\DOCUMENT\UNomer.pas=S:\VChM\DOCUMENT\Unit2.pas</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.669,S:\_programming\Project1.dproj=S:\VChM\DOCUMENT\Document.dproj</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.397,S:\VChM\DOCUMENT\UNomer.dfm=S:\VChM\DOCUMENT\Unit2.dfm</Transaction>
     <Transaction>1899.12.30 00:00:00.000.278,S:\VChM\DOCUMENT\UArc.dfm=S:\VChM\DOCUMENT\Unit2.dfm</Transaction>
-    <Transaction>2023.08.25 13:34:34.099,=S:\VChM\DOCUMENT\Unit2.pas</Transaction>
-    <Transaction>2023.08.25 13:37:20.397,S:\VChM\DOCUMENT\UNomer.dfm=S:\VChM\DOCUMENT\Unit2.dfm</Transaction>
-    <Transaction>2023.08.25 13:37:20.397,S:\VChM\DOCUMENT\UNomer.pas=S:\VChM\DOCUMENT\Unit2.pas</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.278,S:\VChM\DOCUMENT\UArc.pas=S:\VChM\DOCUMENT\Unit2.pas</Transaction>
   </Transactions>
 </BorlandProject>
