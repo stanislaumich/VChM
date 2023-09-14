@@ -11,17 +11,24 @@ object FGraph: TFGraph
   Font.Name = 'Tahoma'
   Font.Style = []
   OldCreateOrder = False
+  OnClose = FormClose
+  OnHide = FormHide
+  OnShow = FormShow
   PixelsPerInch = 96
   TextHeight = 13
   object Image1: TImage
     Left = 0
     Top = 0
     Width = 635
-    Height = 299
-    Align = alClient
-    ExplicitLeft = 276
-    ExplicitTop = 140
-    ExplicitWidth = 105
-    ExplicitHeight = 105
+    Height = 69
+    Align = alTop
+  end
+  object Edit1: TEdit
+    Left = 84
+    Top = 164
+    Width = 121
+    Height = 21
+    TabOrder = 0
+    Text = 'Edit1'
   end
 end

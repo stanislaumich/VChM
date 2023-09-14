@@ -11,7 +11,7 @@ uses
     FireDAC.Phys, FireDAC.Phys.SQLite, FireDAC.Phys.SQLiteDef,
     FireDAC.Stan.ExprFuncs, FireDAC.Phys.SQLiteWrapper.Stat, FireDAC.VCLUI.Wait,
     FireDAC.Stan.Param, FireDAC.DatS, FireDAC.DApt.Intf, FireDAC.DApt, Data.DB,
-    FireDAC.Comp.DataSet, FireDAC.Comp.Client, Vcl.Buttons;
+    FireDAC.Comp.DataSet, FireDAC.Comp.Client, Vcl.Buttons, inifiles;
 
 type
     TFMain = class(TForm)
@@ -163,20 +163,26 @@ Begin
 End;
 
 procedure TFMain.BitBtn1Click(Sender: TObject);
-
+ var
+  ini:tinifile;
  begin
+  ini:=tinifile.Create(Extractfilepath(Application.ExeName)+'GRAPHS.INI');
   fn:=5;
   for I := 1 to 5 do
    begin
     NA[i] := TFGraph.Create(FGraph);
     NA[i].Parent := nil;
-    NA[i].Left:=i*50;
+    NA[i].Left:=ini.ReadInteger('FORM'+Inttostr(i),'LEFT', i*50);
+    NA[i].Top:=ini.ReadInteger('FORM'+Inttostr(i),'TOP', i*50);
+    NA[i].Width:=ini.ReadInteger('FORM'+Inttostr(i),'WIDTH', i*50);
+    NA[i].Height:=ini.ReadInteger('FORM'+Inttostr(i),'HEIGHT', i*50);
     NA[i].sname:='GR '+Inttostr(i);
+    NA[i].num:=i;
     NA[i].Caption:='GRAPH '+Inttostr(i);
     NA[i].Show;
    end;
 
- //FGraph.Show;
+ ini.Free;
 end;
 
 procedure TFMain.BitBtn2Click(Sender: TObject);
@@ -184,7 +190,7 @@ begin
   fn:=5;
   for I := 1 to 5 do
    begin
-    if (NA[i]<>nil) then NA[i].Free;
+    if (NA[i]<>nil) then NA[i].Close;
    end;
 end;
 

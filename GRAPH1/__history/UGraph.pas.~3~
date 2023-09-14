@@ -1,0 +1,26 @@
+unit UGraph;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.ExtCtrls, inifiles;
+
+type
+  TFGraph = class(TForm)
+    Image1: TImage;
+  private
+    { Private declarations }
+  public
+    sname:string;
+    num:integer;
+  end;
+
+var
+  FGraph: TFGraph;
+
+implementation
+
+{$R *.dfm}
+
+end.
