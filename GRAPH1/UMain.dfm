@@ -11,13 +11,16 @@ object FMain: TFMain
   Font.Name = 'Tahoma'
   Font.Style = []
   OldCreateOrder = False
+  OnResize = FormResize
   PixelsPerInch = 96
   TextHeight = 13
   object Image1: TImage
-    Left = 8
-    Top = 8
-    Width = 948
+    Left = 0
+    Top = 0
+    Width = 964
     Height = 425
+    Align = alTop
+    ExplicitTop = 4
   end
   object Button1: TButton
     Left = 8
@@ -35,6 +38,7 @@ object FMain: TFMain
     Height = 25
     Caption = 'Button2'
     TabOrder = 1
+    OnClick = Button2Click
   end
   object Button3: TButton
     Left = 176
@@ -43,6 +47,7 @@ object FMain: TFMain
     Height = 25
     Caption = 'Button3'
     TabOrder = 2
+    OnClick = Button3Click
   end
   object Button4: TButton
     Left = 260
@@ -51,5 +56,58 @@ object FMain: TFMain
     Height = 25
     Caption = 'Button4'
     TabOrder = 3
+    OnClick = Button4Click
+  end
+  object Edit1: TEdit
+    Left = 392
+    Top = 452
+    Width = 121
+    Height = 21
+    TabOrder = 4
+    Text = 'Edit1'
+  end
+  object Button5: TButton
+    Left = 340
+    Top = 544
+    Width = 75
+    Height = 25
+    Caption = 'Button5'
+    TabOrder = 5
+    OnClick = Button5Click
+  end
+  object BitBtn1: TBitBtn
+    Left = 604
+    Top = 524
+    Width = 75
+    Height = 25
+    Caption = 'BitBtn1'
+    TabOrder = 6
+    OnClick = BitBtn1Click
+  end
+  object BitBtn2: TBitBtn
+    Left = 692
+    Top = 524
+    Width = 75
+    Height = 25
+    Caption = 'BitBtn2'
+    TabOrder = 7
+    OnClick = BitBtn2Click
+  end
+  object FDC: TFDConnection
+    Params.Strings = (
+      'DriverID=SQLite'
+      'Database=S:\time.sqlite'
+      'LockingMode=Normal'
+      'JournalMode=Memory')
+    LoginPrompt = False
+    Left = 332
+    Top = 200
+  end
+  object Query1: TFDQuery
+    Connection = FDC
+    SQL.Strings = (
+      '')
+    Left = 396
+    Top = 200
   end
 end
