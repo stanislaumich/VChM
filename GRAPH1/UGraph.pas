@@ -12,7 +12,7 @@ type
   private
     { Private declarations }
   public
-    { Public declarations }
+    sname:string;
   end;
 
 var

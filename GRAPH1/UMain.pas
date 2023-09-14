@@ -171,6 +171,8 @@ procedure TFMain.BitBtn1Click(Sender: TObject);
     NA[i] := TFGraph.Create(FGraph);
     NA[i].Parent := nil;
     NA[i].Left:=i*50;
+    NA[i].sname:='GR '+Inttostr(i);
+    NA[i].Caption:='GRAPH '+Inttostr(i);
     NA[i].Show;
    end;
 
