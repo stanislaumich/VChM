@@ -3,21 +3,21 @@ unit UGraph;
 interface
 
 uses
-  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants,
+  System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.ExtCtrls, inifiles, Vcl.StdCtrls;
 
 type
   TFGraph = class(TForm)
-    Image1: TImage;
-    Edit1: TEdit;
+    Button1: TButton;
     procedure FormHide(Sender: TObject);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
-    procedure FormShow(Sender: TObject);
+    procedure FormPaint(Sender: TObject);
   private
     { Private declarations }
   public
-    sname:string;
-    num:integer;
+    sname: string;
+    num: integer;
   end;
 
 var
@@ -29,41 +29,53 @@ implementation
 
 procedure TFGraph.FormClose(Sender: TObject; var Action: TCloseAction);
 var
-  ini:tinifile;
-  l,t, w, h:integer;
+  ini: tinifile;
+  l, t, w, h: integer;
 begin
- ini:=tinifile.Create(Extractfilepath(Application.ExeName)+'GRAPHS.INI');
- l:= Left;
- ini.WriteInteger('FORM'+Inttostr(num),'LEFT', l);
- t:= Top;
- ini.WriteInteger('FORM'+Inttostr(num),'TOP', t);
- w:= Width;
- ini.WriteInteger('FORM'+Inttostr(num),'WIDTH', w);
- h:= Height;
- ini.WriteInteger('FORM'+Inttostr(num),'HEIGHT', h);
- ini.Free;
+  ini := tinifile.Create(Extractfilepath(Application.ExeName) + 'GRAPHS.INI');
+  l := Left;
+  ini.WriteInteger('FORM' + Inttostr(num), 'LEFT', l);
+  t := Top;
+  ini.WriteInteger('FORM' + Inttostr(num), 'TOP', t);
+  w := Width;
+  ini.WriteInteger('FORM' + Inttostr(num), 'WIDTH', w);
+  h := Height;
+  ini.WriteInteger('FORM' + Inttostr(num), 'HEIGHT', h);
+  ini.Free;
 end;
 
 procedure TFGraph.FormHide(Sender: TObject);
 var
-  ini:tinifile;
-  l,t, w, h:integer;
+  ini: tinifile;
+  l, t, w, h: integer;
 begin
- ini:=tinifile.Create(Extractfilepath(Application.ExeName)+'GRAPHS.INI');
- l:= Left;
- ini.WriteInteger('FORM'+Inttostr(num),'LEFT', l);
- t:= Top;
- ini.WriteInteger('FORM'+Inttostr(num),'TOP', t);
- w:= Width;
- ini.WriteInteger('FORM'+Inttostr(num),'WIDTH', w);
- h:= Height;
- ini.WriteInteger('FORM'+Inttostr(num),'HEIGHT', h);
- ini.Free;
+  ini := tinifile.Create(Extractfilepath(Application.ExeName) + 'GRAPHS.INI');
+  l := Left;
+  ini.WriteInteger('FORM' + Inttostr(num), 'LEFT', l);
+  t := Top;
+  ini.WriteInteger('FORM' + Inttostr(num), 'TOP', t);
+  w := Width;
+  ini.WriteInteger('FORM' + Inttostr(num), 'WIDTH', w);
+  h := Height;
+  ini.WriteInteger('FORM' + Inttostr(num), 'HEIGHT', h);
+  ini.Free;
 end;
 
-procedure TFGraph.FormShow(Sender: TObject);
+procedure TFGraph.FormPaint(Sender: TObject);
 begin
- Edit1.Text:=inttostr(num);
+  // тут надо обработчик перерисовки изображения
+  {
+    Помимо рассмотренного метода Draw канва имеет еще метод копирования
+    CopyRect: procedure CopyRect(Dest: TRect; Canvas: TCanvas; Source: TRect);
+    Метод копирует указанную параметром Source область изображения в канве
+    источника изображения Canvas в указанную параметром Dest область данной канвы.
+    Тип TRect, характеризующий прямоугольные области Source и Dest,
+    уже описывался в разделе 3.2. Например, оператор
+    Canvas.CopyRect(MyRect2, Bitmap.Canvas, MyRect1);
+    копирует на канву формы в область MyRect2 изображение из области MyRect1 канвы компонента Bitmap.
+
+    Источник: http://beluch.ru/progr/100comp/4_2.htm
+  }
 end;
 
 end.

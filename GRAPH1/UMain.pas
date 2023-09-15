@@ -15,29 +15,23 @@ uses
 
 type
     TFMain = class(TForm)
-        Image1: TImage;
-        Button1: TButton;
-        Button2: TButton;
         Button3: TButton;
         Button4: TButton;
         Edit1: TEdit;
         FDC: TFDConnection;
         Query1: TFDQuery;
-    Button5: TButton;
-    BitBtn1: TBitBtn;
-    BitBtn2: TBitBtn;
-        procedure Button1Click(Sender: TObject);
-        procedure Button2Click(Sender: TObject);
+        BitBtn1: TBitBtn;
+        BitBtn2: TBitBtn;
         procedure Button3Click(Sender: TObject);
-    procedure Button4Click(Sender: TObject);
-    procedure Button5Click(Sender: TObject);
-    procedure FormResize(Sender: TObject);
-    procedure BitBtn1Click(Sender: TObject);
-    procedure BitBtn2Click(Sender: TObject);
+        procedure Button4Click(Sender: TObject);
+        procedure BitBtn1Click(Sender: TObject);
+        procedure BitBtn2Click(Sender: TObject);
+        procedure FormCreate(Sender: TObject);
+        procedure FormDestroy(Sender: TObject);
     private
         { Private declarations }
     public
-        { Public declarations }
+        numdat: integer;
     end;
 
 var
@@ -48,20 +42,22 @@ implementation
 {$R *.dfm}
 
 uses UGraph;
- var
- NA: array[1..20] of TFGraph;
- fn,i:integer;
-{
-  https://skachivaem.ru/articles/50-delphi/217--delphi.html
-  procedure DrawGraph (f: TFunc; a: real; b: real; C: TCanvas);
-  «аголовок функции. ѕараметры: f Ц функци€, график, которой будем троить.
-  a Ц начальное значение переменной УxФ. b Ц конечное значение переменной УxФ.
-  C Ц канва, на которой будем рисовать.
-  очень приблизительно - 1 датчик в секунду 8 часов это 1 мегабайт 3 датчика - 1400000
-  3 датчика вставл€лись три минуты
-  с учетом траты времени на метку времеи 2-3-4 датчика займут места чуть меньше
 
-}
+var
+    NA: array [1 .. 20] of TFGraph;
+    fn, i: integer;
+
+    {
+      https://skachivaem.ru/articles/50-delphi/217--delphi.html
+      procedure DrawGraph (f: TFunc; a: real; b: real; C: TCanvas);
+      «аголовок функции. ѕараметры: f Ц функци€, график, которой будем троить.
+      a Ц начальное значение переменной УxФ. b Ц конечное значение переменной УxФ.
+      C Ц канва, на которой будем рисовать.
+      очень приблизительно - 1 датчик в секунду 8 часов это 1 мегабайт 3 датчика - 1400000
+      3 датчика вставл€лись три минуты
+      с учетом траты времени на метку времеи 2-3-4 датчика займут места чуть меньше
+
+    }
 Type
     TFunc = function(x: real): real;
 
@@ -76,39 +72,44 @@ end;
 
 Procedure DrawGraphAllQ(Q: TFDQuery; F: string; C: TCanvas);
 var
-    x, y, cx, cy, px, py: integer;
+    x, y, cx, cy: integer;
     y0, x0, stepx, stepy: integer;
     v: real;
 begin
     Q.First;
 
-    stepx:=10;
-    stepy:=round(C.ClipRect.Bottom/100);
+    stepx := 10;
+    stepy := round(C.ClipRect.Bottom / 100);
 
-    x0:=0;
-    y0:=C.ClipRect.Bottom;
-
-    px:=0;
-    py:=y0;
+    x0 := 0;
+    y0 := C.ClipRect.Bottom;
 
     C.Brush.Color := clBlack;
     C.FillRect(Rect(0, 0, C.ClipRect.Right, C.ClipRect.Bottom));
+
     C.Pen.Color := clYellow;
-    C.MoveTo(px, py);
+    C.MoveTo(0, y0 - 80 * stepy);
+    C.LineTo(C.ClipRect.Right, y0 - 80 * stepy);
+    C.Pen.Color := clRed;
+    C.MoveTo(0, y0 - 90 * stepy);
+    C.LineTo(C.ClipRect.Right, y0 - 90 * stepy);
+
+    C.Pen.Color := clGreen;
+    C.MoveTo(0, y0);
 
     while not Q.Eof do
     begin
-
-        cx:= (Q.FieldByName('sec').Asinteger-28800)*stepx;
+        C.Pen.Color := clGreen;
+        cx := (Q.FieldByName('sec').Asinteger - 28800) * stepx;
         v := Q.FieldByName(F).AsFloat;
-        cy := round(v*stepy);
+        cy := round(v * stepy);
+        if v > 80 then
+            C.Pen.Color := clYellow;
+        if v > 90 then
+            C.Pen.Color := clRed;
 
+        C.LineTo(cx, y0 - cy);
 
-        C.LineTo(cx, y0-cy);
-
-
-        //px:=cx;
-        //py:=cy;
         Q.Next;
     end;
 
@@ -163,45 +164,33 @@ Begin
 End;
 
 procedure TFMain.BitBtn1Click(Sender: TObject);
- var
-  ini:tinifile;
- begin
-  ini:=tinifile.Create(Extractfilepath(Application.ExeName)+'GRAPHS.INI');
-  fn:=5;
-  for I := 1 to 5 do
-   begin
-    NA[i] := TFGraph.Create(FGraph);
-    NA[i].Parent := nil;
-    NA[i].Left:=ini.ReadInteger('FORM'+Inttostr(i),'LEFT', i*50);
-    NA[i].Top:=ini.ReadInteger('FORM'+Inttostr(i),'TOP', i*50);
-    NA[i].Width:=ini.ReadInteger('FORM'+Inttostr(i),'WIDTH', i*50);
-    NA[i].Height:=ini.ReadInteger('FORM'+Inttostr(i),'HEIGHT', i*50);
-    NA[i].sname:='GR '+Inttostr(i);
-    NA[i].num:=i;
-    NA[i].Caption:='GRAPH '+Inttostr(i);
-    NA[i].Show;
-   end;
-
- ini.Free;
+var
+    ini: tinifile;
+begin
+    ini := tinifile.Create(Extractfilepath(Application.ExeName) + 'GRAPHS.INI');
+    for i := 1 to numdat do
+    begin
+        NA[i] := TFGraph.Create(FGraph);
+        NA[i].Parent := nil;
+        NA[i].Left := ini.ReadInteger('FORM' + Inttostr(i), 'LEFT', i * 50);
+        NA[i].Top := ini.ReadInteger('FORM' + Inttostr(i), 'TOP', i * 50);
+        NA[i].Width := ini.ReadInteger('FORM' + Inttostr(i), 'WIDTH', i * 50);
+        NA[i].Height := ini.ReadInteger('FORM' + Inttostr(i), 'HEIGHT', i * 50);
+        NA[i].sname := 'GR ' + Inttostr(i);
+        NA[i].num := i;
+        NA[i].Caption := 'GRAPH ' + Inttostr(i);
+        NA[i].Show;
+    end;
+    ini.Free;
 end;
 
 procedure TFMain.BitBtn2Click(Sender: TObject);
 begin
-  fn:=5;
-  for I := 1 to 5 do
-   begin
-    if (NA[i]<>nil) then NA[i].Close;
-   end;
-end;
-
-procedure TFMain.Button1Click(Sender: TObject);
-begin
-    DrawGraph(F, -10, 10, Image1.Canvas);
-end;
-
-procedure TFMain.Button2Click(Sender: TObject);
-begin
-    Edit1.Text := inttostr(getsecs);
+    for i := 1 to numdat do
+    begin
+        if (NA[i] <> nil) then
+            NA[i].Close;
+    end;
 end;
 
 function mfunc(t: longint): real;
@@ -211,13 +200,9 @@ end;
 
 procedure TFMain.Button3Click(Sender: TObject);
 var
-    i: longint;
+    i, j: longint;
 begin
     Randomize;
-    {
-      Query1.SQL.Clear;
-      Query1.SQL.add('PRAGMA journal_mode = OFF');
-      Query1.ExecSQL; }
     Query1.SQL.Clear;
     Query1.SQL.add('delete from tim where 1=1');
     Query1.ExecSQL;
@@ -231,52 +216,78 @@ begin
     Query1.SQL.add('PRAGMA temp_store = MEMORY');
     Query1.ExecSQL;
     Query1.SQL.Clear;
-    Query1.SQL.add('INSERT INTO tim ( sec, val, val2, val3 )');
-    Query1.SQL.add(' VALUES ( :sec,:val, :val2, :val3)');
-
+    Query1.SQL.add('INSERT INTO dat ( sec, dat, num, val )');
+    Query1.SQL.add(' VALUES ( :sec, :dat, :num, :val)');
     for i := 28800 to 57600 do
     begin
-        Query1.ParamByName('sec').AsInteger := i; // getsecs;
-        Query1.ParamByName('val').AsFloat := mfunc(0);
-        Query1.ParamByName('val2').AsFloat := mfunc(0);
-        Query1.ParamByName('val3').AsFloat := mfunc(0);
-        Query1.ExecSQL;
-        Edit1.Text := inttostr(i);
+        for j := 1 to numdat do
+        begin
+            Query1.ParamByName('sec').Asinteger := i; // getsecs;
+            Query1.ParamByName('dat').AsString := Datetostr(Date);
+            Query1.ParamByName('num').Asinteger := j;
+            Query1.ParamByName('val').AsFloat := mfunc(0);
+            Query1.ExecSQL;
+        end;
+        Edit1.Text := Inttostr(i);
         Application.ProcessMessages;
     end;
-    Query1.SQL.Clear;
-    Query1.SQL.add('PRAGMA journal_mode = WAL');
-    Query1.ExecSQL;
+
     ShowMessage('Done');
 end;
 
 procedure TFMain.Button4Click(Sender: TObject);
+var
+    i: integer;
 begin
     Query1.SQL.Clear;
-    Query1.SQL.add('select * from tim where 1=1 limit 10');
-    Query1.Open;
-
-DrawGraphAllQ(Query1, 'val', Image1.Canvas);
+        Query1.SQL.add('select * from dat where num=:num limit 150');
+    for i := 1 to numdat do
+    begin
+        Query1.ParamByName('num').AsInteger:=i;
+        Query1.Open;
+        // NA[1].image1.Picture.Graphic.Width:=NA[1].Width-8;
+        // NA[1].image1.Picture.Graphic.Height:=NA[1].Height-73;
+        DrawGraphAllQ(Query1, 'val', NA[i].Canvas);
+        Query1.Close;
+    end;
 
 end;
 
-procedure TFMain.Button5Click(Sender: TObject);
+procedure TFMain.FormCreate(Sender: TObject);
+var
+    ini: tinifile;
 begin
-FMain.RePaint;
+    // INI
+    ini := tinifile.Create(Extractfilepath(Application.ExeName) + 'GRAPHS.INI');
+    numdat := ini.ReadInteger('MAIN', 'NUMDAT', 5);
+    // INI
 
-image1.Picture.Graphic.Width:=FMain.Width-8;
-//  image1.Picture.Graphic.Height:=300;
-Image1.Repaint;
-Button4.Click;
-Image1.Repaint;
+    FDC.Close;
+    FDC.Params.Database := Extractfilepath(Application.ExeName) + 'base.sqlite';
+    FDC.Open;
+    Query1.SQL.Clear;
+    Query1.SQL.add('CREATE TABLE IF NOT EXISTS dat ( ');
+    Query1.SQL.add('   sec  BIGINT, ');
+    Query1.SQL.add('   dat  Varchar(50), ');
+    Query1.SQL.add('   num  integer, ');
+    Query1.SQL.add('   val REAL)');
+    Query1.ExecSQL;
+    Query1.SQL.Clear;
+
+    ini.Free;
 end;
 
-procedure TFMain.FormResize(Sender: TObject);
+procedure TFMain.FormDestroy(Sender: TObject);
+var
+    ini: tinifile;
 begin
-image1.Picture.Graphic.Width:=FMain.Width-8;
-image1.Picture.Graphic.Height:=FMain.Height-300;
-Button4.Click;
-Image1.Repaint;
+    // INI
+    ini := tinifile.Create(Extractfilepath(Application.ExeName) + 'GRAPHS.INI');
+    ini.WriteInteger('MAIN', 'NUMDAT', numdat);
+    // INI
+
+    FDC.Close;
+    ini.Free;
 end;
 
 end.

@@ -2,7 +2,7 @@ program Graph1;
 
 uses
   Vcl.Forms,
-  UMain in 'UMain.pas' {FMain},
+  UMain in 'UMain.pas' {FMain} ,
   UGraph in 'UGraph.pas' {FGraph};
 
 {$R *.res}

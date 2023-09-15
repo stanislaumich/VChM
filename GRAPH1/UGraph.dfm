@@ -2,7 +2,7 @@ object FGraph: TFGraph
   Left = 0
   Top = 0
   Caption = #1043#1088#1072#1092#1080#1082
-  ClientHeight = 299
+  ClientHeight = 296
   ClientWidth = 635
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
@@ -13,22 +13,20 @@ object FGraph: TFGraph
   OldCreateOrder = False
   OnClose = FormClose
   OnHide = FormHide
-  OnShow = FormShow
+  OnPaint = FormPaint
+  DesignSize = (
+    635
+    296)
   PixelsPerInch = 96
   TextHeight = 13
-  object Image1: TImage
-    Left = 0
-    Top = 0
-    Width = 635
-    Height = 69
-    Align = alTop
-  end
-  object Edit1: TEdit
-    Left = 84
-    Top = 164
-    Width = 121
-    Height = 21
+  object Button1: TButton
+    Left = 524
+    Top = 265
+    Width = 111
+    Height = 25
+    Anchors = [akRight, akBottom]
+    Caption = 'Button1'
     TabOrder = 0
-    Text = 'Edit1'
+    ExplicitTop = 268
   end
 end

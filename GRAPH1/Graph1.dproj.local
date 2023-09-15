@@ -1,12 +1,12 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <BorlandProject>
 	<Transactions>
+    <Transaction>1899.12.30 00:00:00.000.453,=S:\VChM\GRAPH1\Unit1.pas</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.267,S:\VChM\GRAPH1\Unit1.pas=S:\VChM\GRAPH1\UGraph.pas</Transaction>
     <Transaction>1899.12.30 00:00:00.000.580,=S:\_programming\Unit2.pas</Transaction>
-    <Transaction>1899.12.30 00:00:00.000.623,S:\_programming\Unit2.pas=S:\VChM\GRAPH1\UMain.pas</Transaction>
-    <Transaction>1899.12.30 00:00:00.000.623,S:\_programming\Unit2.dfm=S:\VChM\GRAPH1\UMain.dfm</Transaction>
-    <Transaction>1899.12.30 00:00:00.000.492,S:\_programming\Project2.dproj=S:\VChM\GRAPH1\Graph1.dproj</Transaction>
-    <Transaction>2023.09.14 15:01:21.453,=S:\VChM\GRAPH1\Unit1.pas</Transaction>
-    <Transaction>2023.09.14 15:02:41.267,S:\VChM\GRAPH1\UGraph.pas=S:\VChM\GRAPH1\Unit1.pas</Transaction>
-    <Transaction>2023.09.14 15:02:41.267,S:\VChM\GRAPH1\UGraph.dfm=S:\VChM\GRAPH1\Unit1.dfm</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.623,S:\VChM\GRAPH1\UMain.dfm=S:\_programming\Unit2.dfm</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.492,S:\VChM\GRAPH1\Graph1.dproj=S:\_programming\Project2.dproj</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.267,S:\VChM\GRAPH1\Unit1.dfm=S:\VChM\GRAPH1\UGraph.dfm</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.623,S:\VChM\GRAPH1\UMain.pas=S:\_programming\Unit2.pas</Transaction>
   </Transactions>
 </BorlandProject>

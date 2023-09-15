@@ -2,8 +2,8 @@ object FMain: TFMain
   Left = 0
   Top = 0
   Caption = #1043#1088#1072#1092#1080#1082' '#1090#1077#1089#1090' 1'
-  ClientHeight = 599
-  ClientWidth = 964
+  ClientHeight = 205
+  ClientWidth = 397
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -11,86 +11,52 @@ object FMain: TFMain
   Font.Name = 'Tahoma'
   Font.Style = []
   OldCreateOrder = False
-  OnResize = FormResize
+  OnCreate = FormCreate
+  OnDestroy = FormDestroy
   PixelsPerInch = 96
   TextHeight = 13
-  object Image1: TImage
-    Left = 0
-    Top = 0
-    Width = 964
-    Height = 425
-    Align = alTop
-    ExplicitTop = 4
-  end
-  object Button1: TButton
-    Left = 8
-    Top = 456
-    Width = 75
-    Height = 25
-    Caption = 'Button1'
-    TabOrder = 0
-    OnClick = Button1Click
-  end
-  object Button2: TButton
-    Left = 92
-    Top = 456
-    Width = 75
-    Height = 25
-    Caption = 'Button2'
-    TabOrder = 1
-    OnClick = Button2Click
-  end
   object Button3: TButton
-    Left = 176
-    Top = 456
-    Width = 75
+    Left = 8
+    Top = 8
+    Width = 115
     Height = 25
-    Caption = 'Button3'
-    TabOrder = 2
+    Caption = #1047#1072#1087#1086#1083#1085#1080#1090#1100' '#1073#1072#1079#1091
+    TabOrder = 0
     OnClick = Button3Click
   end
   object Button4: TButton
-    Left = 260
-    Top = 456
-    Width = 75
+    Left = 8
+    Top = 60
+    Width = 115
     Height = 25
-    Caption = 'Button4'
-    TabOrder = 3
+    Caption = #1055#1086#1089#1090#1088#1086#1080#1090#1100' '#1075#1088#1072#1092#1080#1082
+    TabOrder = 1
     OnClick = Button4Click
   end
   object Edit1: TEdit
-    Left = 392
-    Top = 452
+    Left = 129
+    Top = 10
     Width = 121
     Height = 21
-    TabOrder = 4
+    TabOrder = 2
     Text = 'Edit1'
   end
-  object Button5: TButton
-    Left = 340
-    Top = 544
-    Width = 75
-    Height = 25
-    Caption = 'Button5'
-    TabOrder = 5
-    OnClick = Button5Click
-  end
   object BitBtn1: TBitBtn
-    Left = 604
-    Top = 524
-    Width = 75
+    Left = 8
+    Top = 35
+    Width = 115
     Height = 25
-    Caption = 'BitBtn1'
-    TabOrder = 6
+    Caption = #1057#1086#1079#1076#1072#1090#1100' '#1086#1082#1085#1072
+    TabOrder = 3
     OnClick = BitBtn1Click
   end
   object BitBtn2: TBitBtn
-    Left = 692
-    Top = 524
-    Width = 75
+    Left = 8
+    Top = 85
+    Width = 115
     Height = 25
-    Caption = 'BitBtn2'
-    TabOrder = 7
+    Caption = #1047#1072#1082#1088#1099#1090#1100' '#1086#1082#1085#1072
+    TabOrder = 4
     OnClick = BitBtn2Click
   end
   object FDC: TFDConnection
@@ -100,14 +66,14 @@ object FMain: TFMain
       'LockingMode=Normal'
       'JournalMode=Memory')
     LoginPrompt = False
-    Left = 332
-    Top = 200
+    Left = 148
+    Top = 48
   end
   object Query1: TFDQuery
     Connection = FDC
     SQL.Strings = (
       '')
-    Left = 396
-    Top = 200
+    Left = 212
+    Top = 48
   end
 end
