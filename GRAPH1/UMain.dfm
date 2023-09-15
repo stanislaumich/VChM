@@ -2,7 +2,7 @@ object FMain: TFMain
   Left = 0
   Top = 0
   Caption = #1043#1088#1072#1092#1080#1082' '#1090#1077#1089#1090' 1'
-  ClientHeight = 205
+  ClientHeight = 223
   ClientWidth = 397
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
@@ -15,6 +15,13 @@ object FMain: TFMain
   OnDestroy = FormDestroy
   PixelsPerInch = 96
   TextHeight = 13
+  object Label1: TLabel
+    Left = 4
+    Top = 176
+    Width = 95
+    Height = 13
+    Caption = #1053#1072#1079#1074#1072#1085#1080#1077' '#1089#1077#1085#1089#1086#1088#1072':'
+  end
   object Button3: TButton
     Left = 8
     Top = 8
@@ -58,6 +65,23 @@ object FMain: TFMain
     Caption = #1047#1072#1082#1088#1099#1090#1100' '#1086#1082#1085#1072
     TabOrder = 4
     OnClick = BitBtn2Click
+  end
+  object Button1: TButton
+    Left = 280
+    Top = 196
+    Width = 109
+    Height = 25
+    Caption = #1044#1086#1073#1072#1074#1080#1090#1100' '#1089#1077#1085#1089#1086#1088
+    TabOrder = 5
+    OnClick = Button1Click
+  end
+  object Edit2: TEdit
+    Left = 4
+    Top = 196
+    Width = 265
+    Height = 25
+    TabOrder = 6
+    Text = 'Edit2'
   end
   object FDC: TFDConnection
     Params.Strings = (

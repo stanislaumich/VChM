@@ -25,7 +25,7 @@ object FGraph: TFGraph
     Width = 111
     Height = 25
     Anchors = [akRight, akBottom]
-    Caption = 'Button1'
+    Caption = #1044#1077#1081#1089#1090#1074#1080#1077
     TabOrder = 0
     ExplicitTop = 268
   end

@@ -22,12 +22,16 @@ type
         Query1: TFDQuery;
         BitBtn1: TBitBtn;
         BitBtn2: TBitBtn;
+        Button1: TButton;
+        Edit2: TEdit;
+        Label1: TLabel;
         procedure Button3Click(Sender: TObject);
         procedure Button4Click(Sender: TObject);
         procedure BitBtn1Click(Sender: TObject);
         procedure BitBtn2Click(Sender: TObject);
         procedure FormCreate(Sender: TObject);
         procedure FormDestroy(Sender: TObject);
+        procedure Button1Click(Sender: TObject);
     private
         { Private declarations }
     public
@@ -43,9 +47,14 @@ implementation
 
 uses UGraph;
 
+const
+    maxsensors = 20;
+
 var
-    NA: array [1 .. 20] of TFGraph;
-    fn, i: integer;
+    NA: array [1 .. maxsensors] of TFGraph;
+    i: integer;
+    SensorName: array [1 .. maxsensors] of string;
+    SensorEId: array [1 .. maxsensors] of string;
 
     {
       https://skachivaem.ru/articles/50-delphi/217--delphi.html
@@ -78,7 +87,7 @@ var
 begin
     Q.First;
 
-    stepx := 10;
+    stepx := 5;
     stepy := round(C.ClipRect.Bottom / 100);
 
     x0 := 0;
@@ -96,11 +105,11 @@ begin
 
     C.Pen.Color := clGreen;
     C.MoveTo(0, y0);
-
+    C.Pen.Width:=2;
     while not Q.Eof do
     begin
         C.Pen.Color := clGreen;
-        cx := (Q.FieldByName('sec').Asinteger - 28800) * stepx;
+        cx := (Q.FieldByName('sec').Asinteger - 10000) * stepx;
         v := Q.FieldByName(F).AsFloat;
         cy := round(v * stepy);
         if v > 80 then
@@ -176,9 +185,14 @@ begin
         NA[i].Top := ini.ReadInteger('FORM' + Inttostr(i), 'TOP', i * 50);
         NA[i].Width := ini.ReadInteger('FORM' + Inttostr(i), 'WIDTH', i * 50);
         NA[i].Height := ini.ReadInteger('FORM' + Inttostr(i), 'HEIGHT', i * 50);
-        NA[i].sname := 'GR ' + Inttostr(i);
+        SensorName[i] := ini.ReadString('FORM' + Inttostr(i), 'NAME',
+          'NONAME_' + Inttostr(i));
+        SensorEId[i] := ini.ReadString('FORM' + Inttostr(i), 'EId',
+          'EId_' + Inttostr(i));
+        NA[i].sname := SensorName[i];
+        NA[i].eid := SensorEId[i];
         NA[i].num := i;
-        NA[i].Caption := 'GRAPH ' + Inttostr(i);
+        NA[i].Caption := 'График сенсора ' + SensorName[i];
         NA[i].Show;
     end;
     ini.Free;
@@ -195,7 +209,17 @@ end;
 
 function mfunc(t: longint): real;
 begin
-    mfunc := random * 100;
+    mfunc := ({random}sin(t) * 50)+50;
+end;
+
+procedure TFMain.Button1Click(Sender: TObject);
+begin
+    // добавляем сенсор
+    BitBtn2.Click;
+    numdat := numdat + 1;
+    SensorName[numdat]:= Edit2.Text;
+    SensorEId[numdat]:= Edit2.Text;
+    BitBtn1.Click;
 end;
 
 procedure TFMain.Button3Click(Sender: TObject);
@@ -204,7 +228,7 @@ var
 begin
     Randomize;
     Query1.SQL.Clear;
-    Query1.SQL.add('delete from tim where 1=1');
+    Query1.SQL.add('delete from dat where 1=1');
     Query1.ExecSQL;
     Query1.SQL.Clear;
     Query1.SQL.add('VACUUM;');
@@ -218,14 +242,14 @@ begin
     Query1.SQL.Clear;
     Query1.SQL.add('INSERT INTO dat ( sec, dat, num, val )');
     Query1.SQL.add(' VALUES ( :sec, :dat, :num, :val)');
-    for i := 28800 to 57600 do
+    for i := 10000 to 12000 do
     begin
         for j := 1 to numdat do
         begin
             Query1.ParamByName('sec').Asinteger := i; // getsecs;
             Query1.ParamByName('dat').AsString := Datetostr(Date);
             Query1.ParamByName('num').Asinteger := j;
-            Query1.ParamByName('val').AsFloat := mfunc(0);
+            Query1.ParamByName('val').AsFloat := mfunc(i);
             Query1.ExecSQL;
         end;
         Edit1.Text := Inttostr(i);
@@ -240,10 +264,10 @@ var
     i: integer;
 begin
     Query1.SQL.Clear;
-        Query1.SQL.add('select * from dat where num=:num limit 150');
+    Query1.SQL.add('select * from dat where num=:num limit 200');
     for i := 1 to numdat do
     begin
-        Query1.ParamByName('num').AsInteger:=i;
+        Query1.ParamByName('num').Asinteger := i;
         Query1.Open;
         // NA[1].image1.Picture.Graphic.Width:=NA[1].Width-8;
         // NA[1].image1.Picture.Graphic.Height:=NA[1].Height-73;
@@ -273,6 +297,9 @@ begin
     Query1.SQL.add('   val REAL)');
     Query1.ExecSQL;
     Query1.SQL.Clear;
+
+    for i := 1 to maxsensors do
+        NA[i] := nil;
 
     ini.Free;
 end;

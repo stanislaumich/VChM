@@ -17,6 +17,7 @@ type
     { Private declarations }
   public
     sname: string;
+    eid: string;
     num: integer;
   end;
 
@@ -41,6 +42,9 @@ begin
   ini.WriteInteger('FORM' + Inttostr(num), 'WIDTH', w);
   h := Height;
   ini.WriteInteger('FORM' + Inttostr(num), 'HEIGHT', h);
+  ini.WriteString('FORM' + Inttostr(num), 'NAME', sname);
+  ini.WriteString('FORM' + Inttostr(num), 'EId', eid);
+
   ini.Free;
 end;
 
@@ -58,6 +62,8 @@ begin
   ini.WriteInteger('FORM' + Inttostr(num), 'WIDTH', w);
   h := Height;
   ini.WriteInteger('FORM' + Inttostr(num), 'HEIGHT', h);
+  ini.WriteString('FORM' + Inttostr(num), 'NAME', sname);
+  ini.WriteString('FORM' + Inttostr(num), 'EId', eid);
   ini.Free;
 end;
 
